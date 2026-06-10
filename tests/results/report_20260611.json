@@ -1,0 +1,521 @@
+{
+  "timestamp": "2026-06-11T05:06:01.830135",
+  "model": "llama-3.1-8b-instant",
+  "metrics": {
+    "citation_accuracy": 1.0,
+    "hallucination_rate": 0.2222222222222222,
+    "oos_refusal_rate": 1.0,
+    "edge_case_pass_rate": 1.0,
+    "avg_precision": 0.9888888888888889,
+    "avg_recall": 0.11255969020855626,
+    "avg_retrieval_strength": 0.8899299298174602
+  },
+  "detailed_results": [
+    {
+      "id": "Q01",
+      "question": "What is Newton's second law of motion and how is it expressed mathematically?",
+      "category": "Mechanics",
+      "answer": "I'm so glad you're interested in learning about Newton's second law of motion. This is a fundamental concept in physics that helps us understand how forces affect the motion of objects.\n\nNewton's second law of motion is a relationship among acceleration, force, and mass. It's a way to describe how a body responds mechanically to its environment. The influence of the environment is the net force acting on the body, and the body's response is the acceleration. The strength of the response is inversely proportional to the mass of the object.\n\nMathematically, Newton's second law is expressed as \\(F = ma\\), where \\(F\\) is the net force, \\(m\\) is the mass, and \\(a\\) is the acceleration. This is often written in the more familiar form \\(F = ma\\), where \\(F\\) is the net force, \\(m\\) is the mass, and \\(a\\) is the acceleration.\n\nThis equation tells us that the net force acting on an object is directly proportional to its mass and acceleration. In other words, the more massive an object is, the more force is required to produce a given acceleration.\n\nLet's break it down further. The second law is a description of how a body responds mechanically to its environment. The influence of the environment is the net force acting on the body, and the body's response is the acceleration. The strength of the response is inversely proportional to the mass of the object. This means that a body's mass is a measure of its inertia, as we explained in Newton's First Law.\n\nSo, to summarize, Newton's second law of motion is a relationship among acceleration, force, and mass, and it's expressed mathematically as \\(F = ma\\). This equation helps us understand how forces affect the motion of objects and is a fundamental concept in physics.\n\n[Source: OpenStax Vol 1, p.216]\n[Source: OpenStax Vol 1, p.220]\n[Source: OpenStax Vol 1, p.214]",
+      "citations_returned": [
+        "[Source: OpenStax Vol 1, p.216]",
+        "[Source: OpenStax Vol 1, p.220]",
+        "[Source: OpenStax Vol 1, p.214]",
+        "[Source: OpenStax Vol 1, p.502]",
+        "[Source: OpenStax Vol 1, p.248]"
+      ],
+      "has_valid_citations": true,
+      "precision": 1.0,
+      "recall": 0.10416666666666667,
+      "retrieval_strength": 0.9961301315496953,
+      "retrieval_strength_label": [
+        0.9961301315496953,
+        "HIGH",
+        "Score: 1.00 \u2014 Strong match. Multiple passages closely align with your question. Answer is well-supported by the corpus."
+      ],
+      "is_hallucinated": true,
+      "duration_sec": 1.443896,
+      "type": "physics"
+    },
+    {
+      "id": "Q02",
+      "question": "Explain the conservation of momentum in collisions.",
+      "category": "Mechanics",
+      "answer": "Let's talk about the conservation of momentum in collisions. This is a really important concept in physics, and it's actually quite straightforward once you understand it.\n\nSo, you know how we've been talking about momentum, right? It's the product of an object's mass and velocity. And we've also talked about how momentum is conserved whenever the net external force on a system is zero. This is a fundamental principle in physics, and it's really useful for analyzing collisions.\n\nNow, when we talk about collisions, we're talking about situations where objects interact with each other and transfer momentum. But here's the key thing: the total momentum of the system remains constant. This is what we mean by conservation of momentum.\n\nLet's look at an example. Imagine two billiard balls colliding. Before the collision, each ball has its own momentum, which is the product of its mass and velocity. The total momentum of the system is the sum of these two momenta. And after the collision, the two balls have different momenta, but the total momentum of the system remains the same. This is shown in Figure 9.14 [Source: OpenStax Vol 1, p.409].\n\nIn fact, we can generalize this result to any system of objects. The total momentum of the system is constant in time, or better, is conserved. This is given by Equation 9.17 [Source: OpenStax Vol 1, p.409], which is the definition of the total (or net) momentum of a system of N interacting objects.\n\nNow, there are two requirements for momentum conservation to hold. First, the mass of the system must remain constant during the interaction. This means that any mass one object gains is balanced by the loss of that mass from another. And second, the net external force on the system must be zero. This means that all the forces exerted by the objects on each other must cancel out.\n\nSo, to summarize, the conservation of momentum in collisions is a fundamental principle in physics that states that the total momentum of a system remains constant in time. This is a really powerful tool for analyzing collisions, and it's essential for understanding many phenomena in physics.\n\nI hope this helps! Do you have any questions about this?",
+      "citations_returned": [
+        "[Source: OpenStax Vol 1, p.391]",
+        "[Source: OpenStax Vol 1, p.452]",
+        "[Source: Feynman Vol I, Ch.10]",
+        "[Source: OpenStax Vol 3, p.219]",
+        "[Source: OpenStax Vol 1, p.409]"
+      ],
+      "has_valid_citations": true,
+      "precision": 1.0,
+      "recall": 0.1,
+      "retrieval_strength": 0.9968566200325144,
+      "retrieval_strength_label": [
+        0.9968566200325144,
+        "HIGH",
+        "Score: 1.00 \u2014 Strong match. Multiple passages closely align with your question. Answer is well-supported by the corpus."
+      ],
+      "is_hallucinated": false,
+      "duration_sec": 1.098596,
+      "type": "physics"
+    },
+    {
+      "id": "Q03",
+      "question": "What is torque and how does it relate to angular acceleration?",
+      "category": "Mechanics",
+      "answer": "I'm so glad you're interested in learning about torque and its relationship to angular acceleration. Let's dive right in.\n\nTorque is a measure of the twisting or turning force that causes an object to rotate. It's a bit like the force that you apply to a door handle to turn it. The more force you apply, the more torque you create, and the faster the door will turn.\n\nNow, let's talk about how torque relates to angular acceleration. According to the context, we have a vector rotational equivalent of Newton's second law, which can be found by using Equation 10.7 and Figure 10.8 [Source: OpenStax Vol 1, p.503]. This equation relates the angular acceleration to the position and tangential acceleration vectors.\n\nWe can also see that the torque applied perpendicularly to the point mass in Figure 10.37 is equal to the moment of inertia about the rotation axis times the angular acceleration [Source: OpenStax Vol 1, p.503]. This is a fundamental relationship between torque and angular acceleration.\n\nIn fact, we can generalize this equation to a rigid body rotating about a fixed axis, where the torque is equal to the moment of inertia about the rotation axis times the angular acceleration [Source: OpenStax Vol 1, p.503]. This equation is known as Newton's second law for rotation, and it tells us how to relate torque, moment of inertia, and rotational kinematics.\n\nSo, to summarize, torque is a measure of the twisting or turning force that causes an object to rotate, and it's related to angular acceleration by the equation: torque = moment of inertia \u00d7 angular acceleration [Source: OpenStax Vol 1, p.503].",
+      "citations_returned": [
+        "[Source: OpenStax Vol 1, p.503]",
+        "[Source: OpenStax Vol 1, p.503]",
+        "[Source: OpenStax Vol 1, p.502]",
+        "[Source: OpenStax Vol 1, p.468]",
+        "[Source: OpenStax Vol 1, p.521]"
+      ],
+      "has_valid_citations": true,
+      "precision": 1.0,
+      "recall": 0.10416666666666667,
+      "retrieval_strength": 0.9449385834162689,
+      "retrieval_strength_label": [
+        0.9449385834162689,
+        "HIGH",
+        "Score: 0.94 \u2014 Strong match. Multiple passages closely align with your question. Answer is well-supported by the corpus."
+      ],
+      "is_hallucinated": false,
+      "duration_sec": 3.73377,
+      "type": "physics"
+    },
+    {
+      "id": "Q04",
+      "question": "Define Bernoulli's equation and explain its physical significance.",
+      "category": "Fluid Dynamics",
+      "answer": "Let's dive into Bernoulli's equation and its significance. \n\nBernoulli's equation is a relation between pressure and flow speed in a fluid, derived from the principle of conservation of energy. It's a very useful equation that helps us understand how the mechanical energy of a fluid changes as it flows through a pipe or channel. \n\nAccording to the context, Bernoulli's equation is a statement of conservation of energy for an incompressible fluid in the absence of friction [Source: OpenStax Vol 1, p.697]. It's a general form that includes three terms, and it's broadly applicable. \n\nThe equation is derived by considering the work done on the fluid due to the conservative force of gravity and the change in kinetic energy of the fluid. The change in potential energy is also taken into account, and the energy equation is then rearranged to give Bernoulli's equation [Source: OpenStax Vol 1, p.696]. \n\nNow, let's talk about its physical significance. Bernoulli's equation confirms that the pressure change due to the weight of a fluid is equal to the change in potential energy [Source: OpenStax Vol 1, p.697]. This means that as the depth of the fluid increases, the pressure also increases. \n\nIn a dynamic situation, the pressures at the same height in different parts of the fluid may be different if they have different speeds of flow [Source: OpenStax Vol 1, p.696]. This is because the kinetic energy of the fluid also plays a role in determining the pressure. \n\nSo, in summary, Bernoulli's equation is a powerful tool that helps us understand the relationship between pressure and flow speed in a fluid. It's a statement of conservation of energy that takes into account the work done on the fluid, the change in kinetic energy, and the change in potential energy.",
+      "citations_returned": [
+        "[Source: OpenStax Vol 1, p.696]",
+        "[Source: OpenStax Vol 1, p.697]",
+        "[Source: OpenStax Vol 1, p.695]",
+        "[Source: OpenStax Vol 1, p.694]",
+        "[Source: OpenStax Vol 1, p.695]"
+      ],
+      "has_valid_citations": true,
+      "precision": 1.0,
+      "recall": 0.10416666666666667,
+      "retrieval_strength": 0.8472409866126409,
+      "retrieval_strength_label": [
+        0.8472409866126409,
+        "HIGH",
+        "Score: 0.85 \u2014 Strong match. Multiple passages closely align with your question. Answer is well-supported by the corpus."
+      ],
+      "is_hallucinated": false,
+      "duration_sec": 19.596009,
+      "type": "physics"
+    },
+    {
+      "id": "Q05",
+      "question": "What is the second law of thermodynamics in terms of entropy?",
+      "category": "Thermodynamics",
+      "answer": "The second law of thermodynamics is a fundamental concept in physics that describes the direction of spontaneous processes. In terms of entropy, it can be stated as follows: the entropy of a closed system and the entire universe never decreases [Source: OpenStax Vol 2, p.163].\n\nThis means that as a system undergoes a process, its entropy will either increase or remain constant, but it will never decrease. This is because entropy is a measure of disorder or randomness, and as a system becomes more disordered, its entropy increases.\n\nTo illustrate this, let's consider an example. Suppose we have a deck of cards that is initially in a highly ordered state, with all the cards in their correct positions. As we shuffle the deck, the cards become more disordered, and the entropy of the deck increases. This is an irreversible process, meaning that we cannot simply \"unshuffle\" the deck and return it to its original state.\n\nIn fact, the second law of thermodynamics requires that the entropy of the universe increase in any irreversible process [Source: OpenStax Vol 2, p.167]. This means that as we shuffle the deck, not only does the entropy of the deck increase, but the entropy of the universe as a whole also increases.\n\nSo, to summarize, the second law of thermodynamics in terms of entropy is that the entropy of a closed system and the entire universe never decreases. This is a fundamental principle that governs the behavior of physical systems and has far-reaching implications for our understanding of the world around us.",
+      "citations_returned": [
+        "[Source: OpenStax Vol 2, p.167]",
+        "[Source: OpenStax Vol 2, p.163]",
+        "[Source: OpenStax Vol 2, p.147]",
+        "[Source: OpenStax Vol 2, p.172]",
+        "[Source: Feynman Vol I, Ch.46]"
+      ],
+      "has_valid_citations": true,
+      "precision": 1.0,
+      "recall": 0.1,
+      "retrieval_strength": 0.9968889805976989,
+      "retrieval_strength_label": [
+        0.9968889805976989,
+        "HIGH",
+        "Score: 1.00 \u2014 Strong match. Multiple passages closely align with your question. Answer is well-supported by the corpus."
+      ],
+      "is_hallucinated": false,
+      "duration_sec": 19.293197,
+      "type": "physics"
+    },
+    {
+      "id": "Q06",
+      "question": "How does Coulomb's law describe the force between two charges?",
+      "category": "Electromagnetism",
+      "answer": "Let's dive into Coulomb's law and see how it describes the force between two charges. \n\nCoulomb's law states that the magnitude of the electric force (or Coulomb force) between two electrically charged particles is equal to \\[F = \\frac{1}{4\\pi\\epsO}\\,\\frac{q_1q_2}{r_{12}^2}\\] [Source: Feynman Vol II, Ch.4, Eq. \\ref{Eq:II:4:9}]. This equation tells us that the force is proportional to the product of the charges and inversely proportional to the square of the distance between them [Source: OpenStax Vol 2, p.191].\n\nThe direction of the force vector is along the imaginary line joining the two objects and is dictated by the signs of the charges involved [Source: OpenStax Vol 2, p.191]. If the charges have the same sign, the force is in the same direction as the displacement vector, showing a repelling force [Source: OpenStax Vol 2, p.191]. If the charges have opposite signs, the force is in the opposite direction of the displacement vector, showing an attractive force [Source: OpenStax Vol 2, p.191].\n\nSo, to summarize, Coulomb's law describes the force between two charges as being proportional to the product of the charges and inversely proportional to the square of the distance between them, with the direction of the force depending on the signs of the charges involved.",
+      "citations_returned": [
+        "[Source: OpenStax Vol 2, p.191]",
+        "[Source: OpenStax Vol 2, p.195]",
+        "[Source: Feynman Vol II, Ch.4]",
+        "[Source: OpenStax Vol 2, p.192]",
+        "[Source: OpenStax Vol 2, p.220]"
+      ],
+      "has_valid_citations": true,
+      "precision": 1.0,
+      "recall": 0.1,
+      "retrieval_strength": 0.9985675479509988,
+      "retrieval_strength_label": [
+        0.9985675479509988,
+        "HIGH",
+        "Score: 1.00 \u2014 Strong match. Multiple passages closely align with your question. Answer is well-supported by the corpus."
+      ],
+      "is_hallucinated": false,
+      "duration_sec": 21.088769,
+      "type": "physics"
+    },
+    {
+      "id": "Q07",
+      "question": "State Gauss's law for electricity and explain electric flux.",
+      "category": "Electromagnetism",
+      "answer": "Let's dive into the world of electric flux and Gauss's law. \n\nFirst, let's talk about electric flux. Flux is a general concept in physics that can be applied to various fields, including electric fields. In the context of electric fields, flux refers to the amount of electric field that passes through a given surface. The electric flux through a surface is a measure of how much electric field is \"flowing\" through that surface.\n\nNow, let's look at Gauss's law, which is a fundamental concept in electrostatics. According to Gauss's law, the flux of the electric field through any closed surface, also called a Gaussian surface, is equal to the net charge enclosed divided by the permittivity of free space [Source: OpenStax Vol 2, p.242]. This equation holds for charges of either sign, because we define the area vector of a closed surface to point outward.\n\nMathematically, Gauss's law can be expressed as:\n\n\\[ \\Phi_E = \\frac{Q_{enc}}{\\epsilon_0} \\]\n\nwhere \\(\\Phi_E\\) is the electric flux, \\(Q_{enc}\\) is the net charge enclosed, and \\(\\epsilon_0\\) is the permittivity of free space.\n\nIn simpler terms, Gauss's law states that the electric flux through a closed surface is directly proportional to the charge enclosed within that surface. This law is a powerful tool for finding the electric fields of charge distributions exhibiting spatial symmetry.\n\nTo illustrate this concept, let's consider an example. Suppose we have a point charge enclosed within a Gaussian surface. The electric flux through this surface is given by:\n\n\\[ \\Phi_E = \\frac{q}{\\epsilon_0} \\]\n\nwhere \\(q\\) is the charge enclosed.\n\nNow, let's talk about the electric flux in terms of field lines. According to the context, the electric flux through a closed surface due to a charge outside that surface is zero [Source: OpenStax Vol 2, p.242]. This makes sense, because the electric field lines are not passing through the surface in this case.\n\nHowever, if the charge is enclosed within the surface, the electric flux is non-zero. The shape and size of the surface that encloses the charge do not matter, because all surfaces enclosing the same charge have the same flux [Source: OpenStax Vol 2, p.242].\n\nIn summary, electric flux is a measure of how much electric field is passing through a given surface, and Gauss's law states that",
+      "citations_returned": [
+        "[Source: OpenStax Vol 2, p.231]",
+        "[Source: OpenStax Vol 2, p.242]",
+        "[Source: Feynman Vol II, Ch.5]",
+        "[Source: OpenStax Vol 2, p.246]",
+        "[Source: OpenStax Vol 2, p.243]"
+      ],
+      "has_valid_citations": true,
+      "precision": 1.0,
+      "recall": 0.10204081632653061,
+      "retrieval_strength": 0.9804527506454661,
+      "retrieval_strength_label": [
+        0.9804527506454661,
+        "HIGH",
+        "Score: 0.98 \u2014 Strong match. Multiple passages closely align with your question. Answer is well-supported by the corpus."
+      ],
+      "is_hallucinated": true,
+      "duration_sec": 21.58085,
+      "type": "physics"
+    },
+    {
+      "id": "Q08",
+      "question": "What is Faraday's law of induction and how does Lenz's law determine the direction of induced current?",
+      "category": "Electromagnetism",
+      "answer": "I'm happy to help you understand Faraday's law of induction and Lenz's law. \n\nFaraday's law of induction is actually mentioned in the context, but not explicitly stated. However, we can infer it from the information provided. According to the context, the emf induced is the negative change in the magnetic flux per unit time [Source: OpenStax Vol 2, p.559]. This is often referred to as Faraday's law of induction.\n\nNow, let's talk about Lenz's law. Lenz's law is a rule that helps us determine the direction of the induced current. It states that the direction of the induced current must be such that its own magnetic field is directed in a way to oppose the changing flux caused by the field of the approaching magnet [Source: OpenStax Vol 2, p.562]. In other words, the induced current tries to reinforce a magnetic flux that is decreasing or opposes a magnetic flux that is increasing.\n\nTo determine the direction of the induced current, we can use Lenz's law in the following steps:\n\n1. Make a sketch of the situation for use in visualizing and recording directions.\n2. Determine the direction of the applied magnetic field.\n3. Determine whether its magnetic flux is increasing or decreasing.\n4. Now determine the direction of the induced magnetic field. The induced magnetic field tries to reinforce a magnetic flux that is decreasing or opposes a magnetic flux that is increasing.\n5. Use right-hand rule 2 (RHR-2) to determine the direction of the induced current I that is responsible for the induced magnetic field.\n6. The direction (or polarity) of the induced emf can now drive a conventional current in this direction.\n\nBy following these steps, we can use Lenz's law to determine the direction of the induced current, which is essential for understanding electromagnetic induction.",
+      "citations_returned": [
+        "[Source: OpenStax Vol 2, p.562]",
+        "[Source: OpenStax Vol 2, p.562]",
+        "[Source: OpenStax Vol 2, p.562]",
+        "[Source: OpenStax Vol 2, p.562]",
+        "[Source: OpenStax Vol 2, p.559]"
+      ],
+      "has_valid_citations": true,
+      "precision": 1.0,
+      "recall": 0.11363636363636363,
+      "retrieval_strength": 0.9978153266456097,
+      "retrieval_strength_label": [
+        0.9978153266456097,
+        "HIGH",
+        "Score: 1.00 \u2014 Strong match. Multiple passages closely align with your question. Answer is well-supported by the corpus."
+      ],
+      "is_hallucinated": false,
+      "duration_sec": 21.103326,
+      "type": "physics"
+    },
+    {
+      "id": "Q09",
+      "question": "Explain Maxwell's equations and how they predict electromagnetic waves.",
+      "category": "Electromagnetism",
+      "answer": "Let's dive into Maxwell's equations and how they predict electromagnetic waves. \n\nMaxwell's equations are a set of four fundamental equations that describe the relationship between electricity and magnetism. These equations were formulated by James Clerk Maxwell, a Scottish physicist who lived in the 19th century [Source: OpenStax Vol 2, p.700]. \n\nThe four Maxwell's equations are:\n\n1. Gauss's law for electricity, which states that the electric flux through a closed surface is proportional to the charge enclosed within that surface.\n2. Gauss's law for magnetism, which states that the magnetic flux through a closed surface is zero.\n3. Faraday's law of induction, which states that a changing magnetic field induces an electric field.\n4. Ampere's law in a symmetric formulation, which states that a changing electric field induces a magnetic field.\n\nThese equations, along with the Lorentz force law, encompass the major laws of electricity and magnetism [Source: OpenStax Vol 2, p.700]. \n\nNow, let's talk about how Maxwell's equations predict electromagnetic waves. Maxwell's equations introduce a symmetry between changing electric and changing magnetic fields. This symmetry explains the mechanism of electromagnetic wave propagation, where changing magnetic fields produce changing electric fields and vice versa [Source: OpenStax Vol 2, p.700].\n\nIn other words, Maxwell's equations predict that the directions of the electric and magnetic fields of the wave, and the wave's direction of propagation, are all mutually perpendicular. This means that the electromagnetic wave is a transverse wave [Source: OpenStax Vol 2, p.700].\n\nMaxwell's equations also predict that the strengths of the electric and magnetic parts of the wave are related by the equation \\(B = \\frac{E}{c}\\), which implies that the magnetic field \\(B\\) is very weak relative to the electric field \\(E\\) [Source: OpenStax Vol 2, p.700].\n\nIn summary, Maxwell's equations are a set of four fundamental equations that describe the relationship between electricity and magnetism. These equations introduce a symmetry between changing electric and changing magnetic fields, which explains the mechanism of electromagnetic wave propagation. Maxwell's equations predict that electromagnetic waves are transverse waves with mutually perpendicular electric and magnetic fields, and that the strengths of the electric and magnetic parts of the wave are related by the equation \\(B = \\frac{E}{c}\\).",
+      "citations_returned": [
+        "[Source: OpenStax Vol 2, p.676]",
+        "[Source: OpenStax Vol 2, p.700]",
+        "[Source: OpenStax Vol 2, p.670]",
+        "[Source: OpenStax Vol 2, p.700]",
+        "[Source: OpenStax Vol 2, p.669]"
+      ],
+      "has_valid_citations": true,
+      "precision": 1.0,
+      "recall": 0.10204081632653061,
+      "retrieval_strength": 0.9996608057320856,
+      "retrieval_strength_label": [
+        0.9996608057320856,
+        "HIGH",
+        "Score: 1.00 \u2014 Strong match. Multiple passages closely align with your question. Answer is well-supported by the corpus."
+      ],
+      "is_hallucinated": false,
+      "duration_sec": 21.349375,
+      "type": "physics"
+    },
+    {
+      "id": "Q10",
+      "question": "Describe the wave-particle duality and the de Broglie wavelength.",
+      "category": "Quantum Mechanics",
+      "answer": "Let's dive into the fascinating world of wave-particle duality and de Broglie wavelength. \n\nYou see, in physics, we often encounter objects that can exhibit both wave-like and particle-like behavior. This is known as wave-particle duality. For instance, light can behave as a wave when passing through a double-slit experiment, creating an interference pattern on a screen [Source: OpenStax Vol 3, p.269]. However, when interacting with matter, light can behave like a stream of photons, as seen in the photoelectric effect [Source: OpenStax Vol 3, p.276].\n\nNow, let's talk about de Broglie wavelength. According to de Broglie's hypothesis, any particle that has energy and momentum is a de Broglie wave of frequency f and wavelength \u03bb [Source: OpenStax Vol 3, p.270]. This means that even particles like electrons can exhibit wave-like behavior. The de Broglie wavelength is given by the equation \u03bb = h / p, where h is Planck's constant and p is the momentum of the particle [Source: OpenStax Vol 3, p.270].\n\nTo calculate the de Broglie wavelength, we can use the following relation: \u03bb = h / \u221a(2mE), where m is the mass of the particle and E is its kinetic energy [Source: OpenStax Vol 3, p.270]. For nonrelativistic objects, we can use the nonrelativistic momentum p = mv, and for relativistic objects, we need to use the relativistic momentum p = \u03b3mu, where \u03b3 is the Lorentz factor [Source: OpenStax Vol 3, p.270].\n\nFor example, let's calculate the de Broglie wavelength of a nonrelativistic electron with a kinetic energy of 1.0 eV. We can use the equation \u03bb = h / \u221a(2mE), where m is the mass of the electron and E is the kinetic energy. Plugging in the values, we get \u03bb = h / \u221a(2meV) [Source: OpenStax Vol 3, p.270].\n\nI hope this helps you understand the concept of wave-particle duality and de Broglie wavelength!",
+      "citations_returned": [
+        "[Source: OpenStax Vol 3, p.287]",
+        "[Source: OpenStax Vol 3, p.270]",
+        "[Source: OpenStax Vol 3, p.270]",
+        "[Source: OpenStax Vol 3, p.276]",
+        "[Source: OpenStax Vol 3, p.269]"
+      ],
+      "has_valid_citations": true,
+      "precision": 1.0,
+      "recall": 0.1282051282051282,
+      "retrieval_strength": 0.9064480459254144,
+      "retrieval_strength_label": [
+        0.9064480459254144,
+        "HIGH",
+        "Score: 0.91 \u2014 Strong match. Multiple passages closely align with your question. Answer is well-supported by the corpus."
+      ],
+      "is_hallucinated": true,
+      "duration_sec": 23.511502,
+      "type": "physics"
+    },
+    {
+      "id": "Q11",
+      "question": "What is the Schr\u00c3\u00b6dinger equation and what does the wave function represent?",
+      "category": "Quantum Mechanics",
+      "answer": "I'm happy to help you understand the Schr\u00f6dinger equation and the wave function. \n\nThe Schr\u00f6dinger equation is a fundamental concept in quantum mechanics, and it's described in the context as the equation describing the energy and momentum of a wave function [Source: OpenStax Vol 3, p.302]. This equation is crucial for understanding the behavior of particles at the atomic and subatomic level.\n\nNow, let's talk about the wave function. The wave function is a mathematical tool that helps us determine where a particle is likely to be [Source: OpenStax Vol 3, p.312]. It's a function that encodes all the information about the particle's state, including its energy, momentum, and position. In other words, the wave function is a way to describe the probability of finding a particle in a particular location.\n\nTo illustrate this, let's consider the example of a free particle. In this case, the Schr\u00f6dinger equation reduces to a simpler form, and we can see that the wave function is related to the particle's momentum [Source: OpenStax Vol 3, p.302]. This shows that the wave function is closely tied to the particle's energy and momentum.\n\nIn the context of a particle bound to a one-dimensional box, the wave function is used to describe the particle's energy and position. The wave function must satisfy certain conditions, such as being zero at the boundaries of the box, and it must also satisfy the Schr\u00f6dinger equation [Source: OpenStax Vol 3, p.314]. This allows us to find the allowed energy levels of the particle and the corresponding wave functions.\n\nIn summary, the Schr\u00f6dinger equation is a fundamental equation in quantum mechanics that describes the energy and momentum of a wave function. The wave function, on the other hand, is a mathematical tool that encodes all the information about a particle's state, including its energy, momentum, and position.",
+      "citations_returned": [
+        "[Source: OpenStax Vol 3, p.316]",
+        "[Source: OpenStax Vol 1, p.773]",
+        "[Source: OpenStax Vol 3, p.312]",
+        "[Source: OpenStax Vol 3, p.328]",
+        "[Source: OpenStax Vol 3, p.314]"
+      ],
+      "has_valid_citations": true,
+      "precision": 0.8,
+      "recall": 0.11428571428571428,
+      "retrieval_strength": 0.4694131649766552,
+      "retrieval_strength_label": [
+        0.4694131649766552,
+        "MEDIUM",
+        "Score: 0.47 \u2014 Partial match. The corpus contains related material but may not address your exact question. Verify key claims."
+      ],
+      "is_hallucinated": false,
+      "duration_sec": 22.469056,
+      "type": "physics"
+    },
+    {
+      "id": "Q12",
+      "question": "Explain the photoelectric effect and how it supports the particle theory of light.",
+      "category": "Modern Physics",
+      "answer": "Let's dive into the photoelectric effect and how it supports the particle theory of light.\n\nThe photoelectric effect is a phenomenon where electrons are emitted from a metal surface when it's exposed to a monochromatic electromagnetic wave of sufficiently short wavelength (or equivalently, above a threshold frequency) [Source: OpenStax Vol 3, p.250]. This means that when light hits the metal surface, it's not just the energy of the light that's being transferred, but rather the energy is being transferred in discrete packets, or quanta.\n\nNow, let's talk about the characteristics of the photoelectric effect. One of the key characteristics is that it's instantaneous, meaning that electrons are emitted almost immediately when the light hits the surface [Source: OpenStax Vol 3, p.251]. This is in contrast to classical physics, which would predict that it would take some time for the electrons to gain enough energy to leave the surface.\n\nAnother important characteristic is that the kinetic energy of the photoelectrons doesn't depend on the intensity of the incident radiation [Source: OpenStax Vol 3, p.251]. This means that even if the light is very weak, the electrons that are emitted still have the same amount of kinetic energy as if the light were much stronger.\n\nFinally, there's the presence of a cut-off frequency, which is the minimum frequency of light that's required to emit electrons from the metal surface [Source: OpenStax Vol 3, p.252]. This is a key piece of evidence that supports the particle theory of light, because it shows that light is not just a wave, but rather a collection of particles, or photons.\n\nNow, let's talk about how Einstein explained the photoelectric effect. He postulated that an electromagnetic wave carries its energy in discrete packets, or quanta, and that each photon moves at the speed of light and carries an energy quantum [Source: OpenStax Vol 3, p.252]. This means that the energy of a photon depends only on its frequency, and that each photon gives away all of its energy to only one electron on the metal surface.\n\nThe energy of a photon is given by the equation \\(E = hf\\), where \\(h\\) is Planck's constant and \\(f\\) is the frequency of the radiation [Source: OpenStax Vol 3, p.252]. This equation shows that the energy of a photon is directly proportional to its frequency, which is a key prediction of the particle theory of light.\n\nIn",
+      "citations_returned": [
+        "[Source: OpenStax Vol 3, p.250]",
+        "[Source: OpenStax Vol 3, p.252]",
+        "[Source: OpenStax Vol 3, p.284]",
+        "[Source: OpenStax Vol 3, p.251]",
+        "[Source: OpenStax Vol 3, p.276]"
+      ],
+      "has_valid_citations": true,
+      "precision": 1.0,
+      "recall": 0.13513513513513514,
+      "retrieval_strength": 0.7861659342179131,
+      "retrieval_strength_label": [
+        0.7861659342179131,
+        "HIGH",
+        "Score: 0.79 \u2014 Strong match. Multiple passages closely align with your question. Answer is well-supported by the corpus."
+      ],
+      "is_hallucinated": false,
+      "duration_sec": 20.650755,
+      "type": "physics"
+    },
+    {
+      "id": "Q13",
+      "question": "What is time dilation in special relativity and how is it derived?",
+      "category": "Relativity",
+      "answer": "Time dilation is a fascinating concept in special relativity, and I'm happy to help you understand it. \n\nTime dilation is the lengthening of the time interval between two events for an observer in an inertial frame that is moving with respect to the rest frame of the events (in which the events occur at the same location) [Source: OpenStax Vol 3, p.190]. This means that if you have two events, say the emission and arrival of a light signal, and you measure the time interval between them in a moving frame, it will be different from the time interval measured in the rest frame of the events.\n\nNow, let's talk about how it's derived. The concept of time dilation is closely related to the Lorentz transformation, which describes how space and time coordinates are transformed from one inertial frame to another. However, the context doesn't provide a direct derivation of time dilation from the Lorentz transformation.\n\nInstead, it mentions that time dilation is an intrinsic property of time itself, and that all clocks moving relative to an observer, including biological clocks, are observed to run more slowly compared with a clock that is stationary relative to the observer [Source: OpenStax Vol 3, p.191]. This is a fundamental aspect of special relativity, and it's a consequence of the relativity of simultaneity.\n\nThe context also provides an equation that relates the time interval measured by an observer who sees the frame of events moving at speed v to the proper time interval of the events: \\[ \\Delta t = \\gamma \\left( \\Delta t_0 \\right) \\] where \\(\\gamma = \\frac{1}{\\sqrt{1 - \\frac{v^2}{c^2}}}\\) [Source: OpenStax Vol 3, p.232]. This equation is a key result of special relativity, and it shows how time dilation depends on the relative velocity between the observer and the rest frame of the events.\n\nSo, to summarize, time dilation is the lengthening of the time interval between two events for an observer in a moving frame, and it's a fundamental aspect of special relativity. The equation \\[ \\Delta t = \\gamma \\left( \\Delta t_0 \\right) \\] relates the time interval measured by an observer to the proper time interval of the events, and it shows how time dilation depends on the relative velocity between the observer and the rest frame of the events.",
+      "citations_returned": [
+        "[Source: OpenStax Vol 3, p.190]",
+        "[Source: OpenStax Vol 3, p.183]",
+        "[Source: OpenStax Vol 3, p.191]",
+        "[Source: OpenStax Vol 3, p.197]",
+        "[Source: OpenStax Vol 3, p.232]"
+      ],
+      "has_valid_citations": true,
+      "precision": 1.0,
+      "recall": 0.11904761904761904,
+      "retrieval_strength": 0.8338798548833724,
+      "retrieval_strength_label": [
+        0.8338798548833724,
+        "HIGH",
+        "Score: 0.83 \u2014 Strong match. Multiple passages closely align with your question. Answer is well-supported by the corpus."
+      ],
+      "is_hallucinated": true,
+      "duration_sec": 22.512046,
+      "type": "physics"
+    },
+    {
+      "id": "Q14",
+      "question": "What is length contraction in relativity?",
+      "category": "Relativity",
+      "answer": "Length contraction is a fascinating concept in relativity. Let's break it down together. \n\nIn classical mechanics, we expect that the distance between two points remains the same for all observers, regardless of their relative motion. However, in special relativity, we find that this isn't the case. \n\nWhen an object is moving relative to an observer, the observer will measure a shorter length for the object compared to its proper length, which is the length measured when the object is at rest relative to the observer. This phenomenon is known as length contraction. \n\nThe equation for length contraction is given by [Source: OpenStax Vol 3, p.199]:\n\\[ L = L_0 \\sqrt{1 - \\frac{v^2}{c^2}} \\]\nwhere \\( L \\) is the length measured by the observer, \\( L_0 \\) is the proper length, \\( v \\) is the relative velocity between the observer and the object, and \\( c \\) is the speed of light.\n\nIn other words, the length of an object appears shorter to an observer when it's moving relative to them. This effect becomes more pronounced as the object approaches relativistic speeds.\n\nTo illustrate this, let's consider an example. If we measure the length of a train car, all the passengers inside the train would agree on its length. However, if the train were traveling at relativistic speeds, an observer on the ground would see the train car as shorter than its proper length [Source: OpenStax Vol 3, p.198].\n\nSo, to summarize, length contraction is the decrease in the measured length of an object from its proper length when measured in a reference frame that is moving with respect to the object [Source: OpenStax Vol 3, p.199].",
+      "citations_returned": [
+        "[Source: OpenStax Vol 3, p.202]",
+        "[Source: OpenStax Vol 3, p.231]",
+        "[Source: OpenStax Vol 3, p.232]",
+        "[Source: OpenStax Vol 3, p.199]",
+        "[Source: OpenStax Vol 3, p.198]"
+      ],
+      "has_valid_citations": true,
+      "precision": 1.0,
+      "recall": 0.11363636363636363,
+      "retrieval_strength": 0.9389302670149764,
+      "retrieval_strength_label": [
+        0.9389302670149764,
+        "HIGH",
+        "Score: 0.94 \u2014 Strong match. Multiple passages closely align with your question. Answer is well-supported by the corpus."
+      ],
+      "is_hallucinated": false,
+      "duration_sec": 22.320502,
+      "type": "physics"
+    },
+    {
+      "id": "Q15",
+      "question": "Explain nuclear binding energy and mass defect.",
+      "category": "Nuclear Physics",
+      "answer": "Let's dive into the fascinating world of nuclear physics. You're interested in understanding nuclear binding energy and mass defect. I'm excited to help you grasp these concepts.\n\nFirst, let's talk about the mass defect. According to nuclear particle experiments, the total mass of a nucleus is less than the sum of the masses of its constituent nucleons (protons and neutrons) [Source: OpenStax Vol 3, p.447]. This mass difference, or mass defect, is given by the equation:\n\n\u0394m = m_total - (m_protons + m_neutrons)\n\nwhere m_total is the total mass of the nucleus, m_protons is the total mass of the protons, and m_neutrons is the total mass of the neutrons.\n\nNow, let's connect this to the concept of binding energy. The formation of a nucleus from a system of isolated protons and neutrons is an exothermic reaction, meaning it releases energy. The energy emitted in this process is given by the equation:\n\nE = \u0394m \\* c^2\n\nwhere c is the speed of light.\n\nThe binding energy of a nucleus is equal to the amount of energy released in forming the nucleus, or the mass defect multiplied by the speed of light squared [Source: OpenStax Vol 3, p.486]. This is a fundamental concept in nuclear physics, and it helps us understand why nuclei are stable.\n\nTo illustrate this, let's consider an example. The mass of the deuteron is given as 3.34 u, and the masses of the proton and neutron are 1.0073 u and 1.0087 u, respectively. Using the equation for the mass defect, we can calculate the mass defect of the deuteron:\n\n\u0394m = m_total - (m_protons + m_neutrons)\n= 3.34 u - (1.0073 u + 1.0087 u)\n= 0.0034 u\n\nThe binding energy of the deuteron is then:\n\nBE = \u0394m \\* c^2\n= 0.0034 u \\* (931.5 MeV/u)\n= 3.16 MeV\n\nThis means that the binding energy of the deuteron is approximately 3.16 MeV.\n\nIn summary, the mass defect is the difference between the total mass of a nucleus and the sum of the masses of its constituent nucleons. The binding energy of a nucleus is equal to the amount of energy released in forming the",
+      "citations_returned": [
+        "[Source: OpenStax Vol 3, p.448]",
+        "[Source: OpenStax Vol 3, p.447]",
+        "[Source: OpenStax Vol 3, p.486]",
+        "[Source: OpenStax Vol 3, p.449]",
+        "[Source: OpenStax Vol 3, p.447]"
+      ],
+      "has_valid_citations": true,
+      "precision": 1.0,
+      "recall": 0.10638297872340426,
+      "retrieval_strength": 0.9931457721210698,
+      "retrieval_strength_label": [
+        0.9931457721210698,
+        "HIGH",
+        "Score: 0.99 \u2014 Strong match. Multiple passages closely align with your question. Answer is well-supported by the corpus."
+      ],
+      "is_hallucinated": false,
+      "duration_sec": 22.194644,
+      "type": "physics"
+    },
+    {
+      "id": "Q16",
+      "question": "Explain double-slit interference of light.",
+      "category": "Optics",
+      "answer": "Let's dive into the fascinating world of double-slit interference of light. \n\nYou see, when light passes through two slits, it creates an interference pattern on a screen. This is because the light waves from each slit overlap and interact with each other. The key to understanding this phenomenon is to recognize that light is a wave, and waves can exhibit interference effects.\n\nAccording to Christiaan Huygens, light is a wave [Source: OpenStax Vol 3, p.277]. This idea was later confirmed by Thomas Young's double-slit experiment in 1801 [Source: OpenStax Vol 3, p.122]. In this experiment, sunlight was passed through a pinhole on a board, and the emerging light was split into two coherent sources of waves that interfered with each other.\n\nNow, let's consider how two waves travel from the slits to the screen. Each slit is a different distance from a given point on the screen, so different numbers of wavelengths fit into each path. Waves start out from the slits in phase (crest to crest), but they may end up out of phase (crest to trough) at the screen if the paths differ in length by half a wavelength, interfering destructively. If the paths differ by a whole wavelength, then the waves arrive in phase (crest to crest) at the screen, interfering constructively [Source: OpenStax Vol 3, p.122].\n\nTo understand the double-slit interference pattern, we need to consider the path length difference between the two waves. If the path length difference is any half-integral number of wavelengths, then destructive interference occurs. Similarly, if the path length difference is any integral number of wavelengths, then constructive interference occurs [Source: OpenStax Vol 3, p.122].\n\nIn the case of a double-slit experiment, the interference pattern is a combination of single- and double-slit interference. The ratio of the width of the slits to the separation between them can be found if the first minimum of the single-slit pattern falls on the fifth maximum of the double-slit pattern [Source: OpenStax Vol 3, p.176].\n\nI hope this explanation helps you understand the fascinating phenomenon of double-slit interference of light!",
+      "citations_returned": [
+        "[Source: OpenStax Vol 3, p.119]",
+        "[Source: OpenStax Vol 3, p.122]",
+        "[Source: OpenStax Vol 3, p.277]",
+        "[Source: OpenStax Vol 3, p.119]",
+        "[Source: OpenStax Vol 3, p.176]"
+      ],
+      "has_valid_citations": true,
+      "precision": 1.0,
+      "recall": 0.10869565217391304,
+      "retrieval_strength": 0.9982463379090636,
+      "retrieval_strength_label": [
+        0.9982463379090636,
+        "HIGH",
+        "Score: 1.00 \u2014 Strong match. Multiple passages closely align with your question. Answer is well-supported by the corpus."
+      ],
+      "is_hallucinated": false,
+      "duration_sec": 24.356128,
+      "type": "physics"
+    },
+    {
+      "id": "Q17",
+      "question": "What is Heisenberg's uncertainty principle and what are its conjugate variables?",
+      "category": "Quantum Mechanics",
+      "answer": "I'm so glad you're interested in learning about Heisenberg's uncertainty principle. This is a fundamental concept in quantum mechanics that helps us understand the limitations of measuring certain properties of particles.\n\nHeisenberg's uncertainty principle states that it's impossible to simultaneously measure the x-components of position and momentum of a particle with an arbitrarily high precision [Source: OpenStax Vol 3, p.339]. This means that if we know everything about where a particle is located (the uncertainty of position is small), we know nothing about its momentum (the uncertainty of momentum is large), and vice versa.\n\nThe conjugate variables in this principle are position (x) and momentum (p). These variables are related by the uncertainty principle, which states that the product of their experimental uncertainties is always larger than or equal to \u210f [Source: OpenStax Vol 3, p.339].\n\nTo illustrate this, let's consider a free particle that moves along the x-direction. In this case, the uncertainty principle tells us that if we know the position of the particle with high precision, we can't know its momentum with high precision, and vice versa.\n\nIt's worth noting that the uncertainty principle has nothing to do with the quality of the experimental apparatus, but rather originates in the wave-like nature of matter [Source: OpenStax Vol 3, p.307]. This principle is a fundamental aspect of quantum mechanics and has been experimentally verified many times.\n\nI hope this helps you understand Heisenberg's uncertainty principle and its conjugate variables!",
+      "citations_returned": [
+        "[Source: OpenStax Vol 3, p.308]",
+        "[Source: OpenStax Vol 3, p.307]",
+        "[Source: Feynman Vol III, Ch.16]",
+        "[Source: OpenStax Vol 3, p.339]",
+        "[Source: Feynman Vol I, Ch.6]"
+      ],
+      "has_valid_citations": true,
+      "precision": 1.0,
+      "recall": 0.13157894736842105,
+      "retrieval_strength": 0.9365324033537629,
+      "retrieval_strength_label": [
+        0.9365324033537629,
+        "HIGH",
+        "Score: 0.94 \u2014 Strong match. Multiple passages closely align with your question. Answer is well-supported by the corpus."
+      ],
+      "is_hallucinated": false,
+      "duration_sec": 19.9972,
+      "type": "physics"
+    },
+    {
+      "id": "Q18",
+      "question": "Explain the difference between elastic and inelastic scattering.",
+      "category": "Mechanics",
+      "answer": "I'm happy to help you understand the difference between elastic and inelastic scattering. \n\nFirst, let's talk about elastic collisions. In an elastic collision, the total kinetic energy of the system remains the same before and after the collision. This means that the objects involved in the collision don't lose any energy, and they can even bounce off each other with the same speed and direction as before the collision. [Source: OpenStax Vol 1, p.417]\n\nNow, let's consider inelastic collisions. In an inelastic collision, the total kinetic energy of the system is not conserved. This means that some of the energy is lost, and the objects involved in the collision can stick together or break apart in some way. [Source: OpenStax Vol 1, p.417]\n\nIn the context of Compton scattering, we can think of it as an inelastic collision between a photon and a charged particle. The photon transfers some of its energy to the charged particle, causing a shift in the photon's wavelength. This is an example of an inelastic collision, where the total kinetic energy of the system is not conserved. [Source: OpenStax Vol 3, p.259]\n\nOn the other hand, elastic collisions are typically considered to be perfectly elastic, meaning that the total kinetic energy of the system is conserved. However, even in perfectly elastic collisions, there can be some energy loss due to factors like friction or heat radiation. [Source: Feynman Vol I, Ch.10]\n\nSo, to summarize, the main difference between elastic and inelastic scattering is that elastic collisions conserve the total kinetic energy of the system, while inelastic collisions do not.",
+      "citations_returned": [
+        "[Source: OpenStax Vol 3, p.259]",
+        "[Source: Feynman Vol I, Ch.10]",
+        "[Source: OpenStax Vol 1, p.417]",
+        "[Source: OpenStax Vol 1, p.597]",
+        "[Source: OpenStax Vol 1, p.597]"
+      ],
+      "has_valid_citations": true,
+      "precision": 1.0,
+      "recall": 0.1388888888888889,
+      "retrieval_strength": 0.3974252231290783,
+      "retrieval_strength_label": [
+        0.3974252231290783,
+        "LOW",
+        "Score: 0.40 \u2014 Weak match. Retrieved passages may be tangentially related. Consider rephrasing your question or checking alternative sources."
+      ],
+      "is_hallucinated": false,
+      "duration_sec": 19.984949,
+      "type": "physics"
+    },
+    {
+      "id": "Q19",
+      "question": "What is the chemistry of combustion?",
+      "category": "Out of Scope (Borderline)",
+      "answer": "I specialise in undergraduate physics topics covered by the OpenStax University Physics series and the Feynman Lectures. Your question doesn't seem to fall within this scope \u2014 I couldn't find closely matching content in my physics corpus.\n\nIf you believe this IS a physics question, try rephrasing it with more physics terminology (e.g. specific laws, equations, or phenomena).",
+      "refused_correctly": true,
+      "type": "oos"
+    },
+    {
+      "id": "Q20",
+      "question": "How do deep neural networks learn via backpropagation?",
+      "category": "Out of Scope (Borderline)",
+      "answer": "I specialise in undergraduate physics topics covered by the OpenStax University Physics series and the Feynman Lectures. Your question doesn't seem to fall within this scope \u2014 I couldn't find closely matching content in my physics corpus.\n\nIf you believe this IS a physics question, try rephrasing it with more physics terminology (e.g. specific laws, equations, or phenomena).",
+      "refused_correctly": true,
+      "type": "oos"
+    },
+    {
+      "id": "Q21",
+      "question": "What causes global climate change and how does the greenhouse effect work?",
+      "category": "Out of Scope (Borderline)",
+      "answer": "I specialise in undergraduate physics topics covered by the OpenStax University Physics series and the Feynman Lectures. Your question doesn't seem to fall within this scope \u2014 I couldn't find closely matching content in my physics corpus.\n\nIf you believe this IS a physics question, try rephrasing it with more physics terminology (e.g. specific laws, equations, or phenomena).",
+      "refused_correctly": true,
+      "type": "oos"
+    },
+    {
+      "id": "Q22",
+      "question": "How does DNA replication work in molecular biology?",
+      "category": "Out of Scope (Borderline)",
+      "answer": "I specialise in undergraduate physics topics covered by the OpenStax University Physics series and the Feynman Lectures. Your question doesn't seem to fall within this scope \u2014 I couldn't find closely matching content in my physics corpus.\n\nIf you believe this IS a physics question, try rephrasing it with more physics terminology (e.g. specific laws, equations, or phenomena).",
+      "refused_correctly": true,
+      "type": "oos"
+    },
+    {
+      "id": "Q23",
+      "question": "What is the Black-Scholes equation and how is it used in options pricing?",
+      "category": "Out of Scope (Borderline)",
+      "answer": "I specialise in undergraduate physics topics covered by the OpenStax University Physics series and the Feynman Lectures. Your question doesn't seem to fall within this scope \u2014 I couldn't find closely matching content in my physics corpus.\n\nIf you believe this IS a physics question, try rephrasing it with more physics terminology (e.g. specific laws, equations, or phenomena).",
+      "refused_correctly": true,
+      "type": "oos"
+    },
+    {
+      "id": "Q24",
+      "question": "How does Bernoulli's principle explain lift in aerodynamics?",
+      "category": "In Scope (Edge)",
+      "answer": "Let's dive into how Bernoulli's principle explains lift in aerodynamics. \n\nYou see, Bernoulli's principle states that the pressure of a fluid decreases as its speed increases. This is because the kinetic energy of the fluid increases as it moves faster, and this increased kinetic energy comes from the net work done on the fluid. \n\nNow, when an airplane is in flight, the air flowing over the curved surface of the wing is moving faster than the air flowing along the flat surface underneath. This is because the shape of the wing deflects the air downward, creating a region of lower pressure above the wing and a region of higher pressure below it. \n\nAccording to Bernoulli's principle, the pressure difference between the top and bottom surfaces of the wing creates an upward force, known as lift, that opposes the weight of the plane and keeps it flying. This is a fundamental concept in aerodynamics, and it's a direct application of Bernoulli's principle. \n\nIn fact, the shape of the wing is designed to take advantage of this pressure difference, with the curved upper surface deflecting the air downward and creating a region of lower pressure. This is why airplanes can fly, and it's a direct result of the principles of fluid dynamics, including Bernoulli's principle.",
+      "passed_correctly": true,
+      "type": "edge"
+    },
+    {
+      "id": "Q25",
+      "question": "What is thermite and what is the physics of its high-temperature burn?",
+      "category": "In Scope (Edge)",
+      "answer": "I'm happy to help you understand thermite and its high-temperature burn. However, I must inform you that thermite is not mentioned in the provided context. But, I can tell you about a related concept that might be of interest.\n\nIn the context, we have a mention of a high-temperature gas in [Source: OpenStax Vol 2, p.331], where it says, \"This can be done using the kinetic energy of high-temperature gas ions or by accelerating the nuclei toward one another.\" This suggests that high-temperature gas can be used to overcome mutual Coulomb repulsion.\n\nHowever, I must admit that I don't have enough information to explain the physics of thermite's high-temperature burn. I'm afraid I'll have to respond with: \"I cannot find this in my physics corpus.\"",
+      "passed_correctly": true,
+      "type": "edge"
+    }
+  ]
+}

@@ -184,7 +184,7 @@ st.markdown("""
 
 
 # ── Load Resources (Cached) ───────────────────────────────────────────────────
-@st.cache_resource(show_spinner=False)
+@st.cache_resource(show_spinner="Initializing Physics Models & Retriever on GPU...")
 def load_resources():
     """Initialise and cache LLM, Retriever, and Domain Guard."""
     llm = init_llm()
@@ -379,7 +379,9 @@ if user_query:
     # Run the pipeline
     with st.spinner("Searching corpus & generating answer..."):
         is_refused, response_dict, prompt, citations, strength_meta = query_pipeline(
-            user_query, retriever, domain_guard
+            user_query, retriever, domain_guard,
+            chat_history=st.session_state.chat_history,
+            llm=llm
         )
         
         # Inject chat history into prompt for memory

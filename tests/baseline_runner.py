@@ -11,8 +11,8 @@ from datetime import datetime
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from config import LLM_MODEL, OLLAMA_BASE_URL
-from langchain_ollama import ChatOllama
+from config import LLM_MODEL
+from src.llm_chain import init_llm
 
 def main():
     print("=" * 60)
@@ -30,17 +30,13 @@ def main():
     print(f"Loaded {len(physics_questions)} physics questions for baseline run.")
 
     # 2. Initialize LLM (No RAG)
-    print(f"Initialising bare ChatOllama ({LLM_MODEL}) at {OLLAMA_BASE_URL}...")
+    print(f"Initialising bare LLM ({LLM_MODEL})...")
     try:
-        llm = ChatOllama(
-            model=LLM_MODEL,
-            temperature=0,
-            num_predict=512,
-            base_url=OLLAMA_BASE_URL,
-        )
-        llm.invoke("ping")
+        llm = init_llm()
+        if llm is None:
+            raise ValueError("init_llm returned None")
     except Exception as e:
-        print(f"ERROR: Could not connect to Ollama: {e}")
+        print(f"ERROR: Could not connect to LLM: {e}")
         return
 
     # 3. Run evaluation

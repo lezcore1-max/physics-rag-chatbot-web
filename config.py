@@ -4,6 +4,11 @@ All tunable parameters live here. Change once, affects everything.
 """
 
 import os
+from dotenv import load_dotenv
+
+# Load environment variables from .env file
+load_dotenv()
+
 GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
 # ── Paths ────────────────────────────────────────────────────────────
 BASE_DIR        = os.path.dirname(os.path.abspath(__file__))

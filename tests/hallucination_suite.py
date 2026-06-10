@@ -22,7 +22,7 @@ from typing import List, Dict, Any, Tuple
 
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
-from config import LLM_MODEL, OLLAMA_BASE_URL, FINAL_K
+from config import LLM_MODEL, FINAL_K
 from src.retriever import get_ensemble_retriever
 from src.llm_chain import init_llm, execute_rag, query_pipeline
 from src.domain_guard import DomainGuard, REFUSAL_MESSAGE
