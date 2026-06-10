@@ -1,0 +1,29 @@
+# ── LangChain Core ───────────────────────────────────────────────────
+langchain>=0.3.0
+langchain-community>=0.3.0
+langchain-ollama>=0.2.0
+langchain-chroma>=0.1.0
+
+# ── PDF Parsing — Three-Layer Strategy ───────────────────────────────
+pymupdf>=1.24.0           # Primary parser (better equation handling than pypdf)
+pdfplumber>=0.11.0        # Fallback for equation-heavy pages
+unstructured>=0.15.0      # Structural parsing fallback
+
+# ── Retrieval ─────────────────────────────────────────────────────────
+rank_bm25>=0.2.2                    # BM25 keyword retrieval
+sentence-transformers>=3.0.0        # CrossEncoder reranker
+
+# ── Vector Store ──────────────────────────────────────────────────────
+chromadb>=0.5.0
+
+# ── Web Scraping (Feynman) ────────────────────────────────────────────
+requests>=2.31.0
+beautifulsoup4>=4.12.0
+lxml>=5.0.0
+
+# ── Streamlit UI ──────────────────────────────────────────────────────
+streamlit>=1.40.0
+
+# ── Utilities ─────────────────────────────────────────────────────────
+python-dotenv>=1.0.0
+tqdm>=4.66.0

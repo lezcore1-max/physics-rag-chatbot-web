@@ -1,0 +1,28 @@
+# Python runtime
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.ipynb_checkpoints/
+
+# Virtual Environment
+venv/
+.venv/
+env/
+ENV/
+
+# Local Database & Cache Indices
+data/chroma_db/
+data/chroma_db_backup/
+data/bm25_index.pkl
+data/ingest_checkpoint.json
+
+# Environment secrets
+.env
+.env.local
+.env.development
+.env.staging
+.env.production
+
+# Large raw books (prevent pushing 100MB+ PDFs to Github)
+data/raw/

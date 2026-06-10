@@ -1,0 +1,339 @@
+{
+  "timestamp": "2026-06-10T05:14:00.295424",
+  "model": "qwen2.5:7b",
+  "avg_keyword_match": 0.7777777777777778,
+  "citation_rate": 0.0,
+  "results": [
+    {
+      "id": "Q01",
+      "question": "What is Newton's second law of motion and how is it expressed mathematically?",
+      "category": "Mechanics",
+      "answer": "Newton's second law of motion states that the net force acting on an object is equal to the object's mass multiplied by its acceleration. Mathematically, it is expressed as:\n\n\\[ F = ma \\]\n\nwhere \\( F \\) is the net force in Newtons (N), \\( m \\) is the mass of the object in kilograms (kg), and \\( a \\) is the acceleration of the object in meters per second squared (m/s\u00b2).",
+      "duration_sec": 4.99345,
+      "keywords_matched": [
+        "force",
+        "mass",
+        "acceleration",
+        "f = ma",
+        "second law"
+      ],
+      "keyword_match_pct": 1.0,
+      "has_citation": false,
+      "success": true
+    },
+    {
+      "id": "Q02",
+      "question": "Explain the conservation of momentum in collisions.",
+      "category": "Mechanics",
+      "answer": "In collisions, the total momentum of a closed system remains constant if no external forces act on it. This is known as the conservation of momentum. Momentum is conserved in both elastic and inelastic collisions, but kinetic energy may not be conserved in inelastic collisions.",
+      "duration_sec": 3.231393,
+      "keywords_matched": [
+        "momentum",
+        "conservation",
+        "collision",
+        "elastic",
+        "inelastic",
+        "external force"
+      ],
+      "keyword_match_pct": 1.0,
+      "has_citation": false,
+      "success": true
+    },
+    {
+      "id": "Q03",
+      "question": "What is torque and how does it relate to angular acceleration?",
+      "category": "Mechanics",
+      "answer": "Torque is a measure of the force that can cause an object to rotate about an axis. It is calculated as the product of the force and the perpendicular distance from the axis of rotation to the line of action of the force. Torque relates to angular acceleration through Newton's second law for rotation, which states that the net torque on an object is equal to the moment of inertia of the object multiplied by its angular acceleration (\u03c4 = I\u03b1).",
+      "duration_sec": 4.928169,
+      "keywords_matched": [
+        "torque",
+        "angular acceleration",
+        "moment of inertia"
+      ],
+      "keyword_match_pct": 0.6,
+      "has_citation": false,
+      "success": true
+    },
+    {
+      "id": "Q04",
+      "question": "Define Bernoulli's equation and explain its physical significance.",
+      "category": "Fluid Dynamics",
+      "answer": "Bernoulli's equation is a statement of the conservation of energy principle applied to moving fluids. It states that for an incompressible, inviscid fluid flowing in a streamline, the sum of the pressure energy, kinetic energy, and potential energy per unit volume remains constant along a streamline. Mathematically, it can be expressed as:\n\n\\[ P + \\frac{1}{2} \\rho v^2 + \\rho g h = \\text{constant} \\]\n\nwhere:\n- \\(P\\) is the pressure,\n- \\(\\rho\\) is the fluid density,\n- \\(v\\) is the flow velocity,\n- \\(g\\) is the acceleration due to gravity, and\n- \\(h\\) is the height above a reference level.\n\nThe physical significance of Bernoulli's equation lies in its ability to relate the various forms of energy within a flowing fluid. It explains phenomena such as lift generation by airplane wings (Bernoulli effect), pressure changes in fluid flow, and the behavior of fluids in pipes or channels.",
+      "duration_sec": 10.547733,
+      "keywords_matched": [
+        "bernoulli",
+        "pressure",
+        "velocity",
+        "height",
+        "conservation of energy",
+        "fluid"
+      ],
+      "keyword_match_pct": 1.0,
+      "has_citation": false,
+      "success": true
+    },
+    {
+      "id": "Q05",
+      "question": "What is the second law of thermodynamics in terms of entropy?",
+      "category": "Thermodynamics",
+      "answer": "The second law of thermodynamics states that the total entropy of an isolated system always increases over time.",
+      "duration_sec": 1.771164,
+      "keywords_matched": [
+        "entropy",
+        "second law",
+        "thermodynamics"
+      ],
+      "keyword_match_pct": 0.5,
+      "has_citation": false,
+      "success": true
+    },
+    {
+      "id": "Q06",
+      "question": "How does Coulomb's law describe the force between two charges?",
+      "category": "Electromagnetism",
+      "answer": "Coulomb's law states that the magnitude of the force between two point charges is directly proportional to the product of the magnitudes of the charges and inversely proportional to the square of the distance between them. The force is along the line joining the two charges and is repulsive if the charges have the same sign and attractive if they have opposite signs. Mathematically, it is expressed as:\n\n\\[ F = k \\frac{|q_1 q_2|}{r^2} \\]\n\nwhere \\( F \\) is the magnitude of the force between the charges, \\( q_1 \\) and \\( q_2 \\) are the magnitudes of the charges, \\( r \\) is the distance between the charges, and \\( k \\) is Coulomb's constant (\\( k \\approx 8.99 \\times 10^9 \\, \\text{N} \\cdot \\text{m}^2/\\text{C}^2 \\)).",
+      "duration_sec": 10.22608,
+      "keywords_matched": [
+        "coulomb",
+        "charge",
+        "force",
+        "r^2"
+      ],
+      "keyword_match_pct": 0.5714285714285714,
+      "has_citation": false,
+      "success": true
+    },
+    {
+      "id": "Q07",
+      "question": "State Gauss's law for electricity and explain electric flux.",
+      "category": "Electromagnetism",
+      "answer": "Gauss's Law for Electricity states that the total electric flux through any closed surface is proportional to the total charge enclosed within that surface. Mathematically, it is expressed as:\n\n\\[\n\\Phi_E = \\oint_S \\mathbf{E} \\cdot d\\mathbf{A} = \\frac{Q_{enc}}{\\epsilon_0}\n\\]\n\nwhere:\n- \\(\\Phi_E\\) is the electric flux,\n- \\(\\mathbf{E}\\) is the electric field vector,\n- \\(d\\mathbf{A}\\) is an infinitesimal area element of the closed surface,\n- \\(Q_{enc}\\) is the total charge enclosed by the surface,\n- \\(\\epsilon_0\\) is the permittivity of free space.\n\nElectric flux (\\(\\Phi_E\\)) is a measure of the electric field passing through a given surface. It depends on both the magnitude of the electric field and the area perpendicular to the field. The direction of the flux is defined by the orientation of the surface element relative to the electric field vector.",
+      "duration_sec": 10.997953,
+      "keywords_matched": [
+        "gauss",
+        "electric flux",
+        "charge enclosed",
+        "epsilon_0",
+        "surface"
+      ],
+      "keyword_match_pct": 1.0,
+      "has_citation": false,
+      "success": true
+    },
+    {
+      "id": "Q08",
+      "question": "What is Faraday's law of induction and how does Lenz's law determine the direction of induced current?",
+      "category": "Electromagnetism",
+      "answer": "Faraday's law of induction states that an electromotive force (EMF) is induced in a circuit when the magnetic flux through the circuit changes. Mathematically, it is expressed as \\(\\mathcal{E} = -\\frac{d\\Phi_B}{dt}\\), where \\(\\mathcal{E}\\) is the induced EMF and \\(\\Phi_B\\) is the magnetic flux.\n\nLenz's law determines the direction of the induced current such that it opposes the change in magnetic flux that caused it. The direction of the induced current is given by the law: \"the induced current will flow in a direction that creates a magnetic field opposing the change in magnetic flux through the circuit.\"",
+      "duration_sec": 7.424222,
+      "keywords_matched": [
+        "faraday",
+        "induction",
+        "magnetic flux",
+        "lenz",
+        "change"
+      ],
+      "keyword_match_pct": 0.8333333333333334,
+      "has_citation": false,
+      "success": true
+    },
+    {
+      "id": "Q09",
+      "question": "Explain Maxwell's equations and how they predict electromagnetic waves.",
+      "category": "Electromagnetism",
+      "answer": "Maxwell's equations are a set of four fundamental equations that describe the behavior of electric and magnetic fields. They are:\n\n1. Gauss's law for electricity: \\(\\nabla \\cdot \\mathbf{E} = \\frac{\\rho}{\\epsilon_0}\\)\n2. Gauss's law for magnetism: \\(\\nabla \\cdot \\mathbf{B} = 0\\)\n3. Faraday's law of induction: \\(\\nabla \\times \\mathbf{E} = -\\frac{\\partial \\mathbf{B}}{\\partial t}\\)\n4. Amp\u00e8re-Maxwell law: \\(\\nabla \\times \\mathbf{B} = \\mu_0 \\mathbf{J} + \\mu_0 \\epsilon_0 \\frac{\\partial \\mathbf{E}}{\\partial t}\\)\n\nThese equations predict the existence of electromagnetic waves by showing that a changing electric field produces a magnetic field, and a changing magnetic field produces an electric field. This interdependence allows for the propagation of electromagnetic fields through space as waves, even in the absence of charges or currents.\n\nThe fourth equation, particularly when there are no sources (currents \\(\\mathbf{J} = 0\\)), simplifies to:\n\n\\[\n\\nabla \\times \\mathbf{B} = \\mu_0 \\epsilon_0 \\frac{\\partial \\mathbf{E}}{\\partial t}\n\\]\n\nThis shows that a time-varying electric field generates a magnetic field, and vice versa. The coupled nature of these fields allows them to propagate through space as waves at the speed of light \\(c = \\frac{1}{\\sqrt{\\mu_0 \\epsilon_0}}\\), thus predicting the existence of electromagnetic waves.",
+      "duration_sec": 18.229358,
+      "keywords_matched": [
+        "maxwell",
+        "equations",
+        "electromagnetic",
+        "speed of light",
+        "induction"
+      ],
+      "keyword_match_pct": 1.0,
+      "has_citation": false,
+      "success": true
+    },
+    {
+      "id": "Q10",
+      "question": "Describe the wave-particle duality and the de Broglie wavelength.",
+      "category": "Quantum Mechanics",
+      "answer": "Wave-particle duality refers to the concept that every particle or quantum entity can be described as either a particle or a wave. This means that particles like electrons exhibit both particle-like and wave-like behavior depending on the experimental setup. For instance, in some experiments, they behave like particles (e.g., when interacting with other particles), while in others, they show wave properties such as interference and diffraction.\n\nThe de Broglie wavelength is a fundamental concept derived from this duality. It states that any moving particle or quantum entity can be associated with a wavelength, \u03bb = h/p, where \\( h \\) is Planck's constant and \\( p \\) is the momentum of the particle. This relationship shows that matter has wave-like properties, and the wavelength decreases as the mass and velocity of the particle increase.",
+      "duration_sec": 8.938605,
+      "keywords_matched": [
+        "wave-particle",
+        "de broglie",
+        "wavelength",
+        "momentum",
+        "planck"
+      ],
+      "keyword_match_pct": 0.8333333333333334,
+      "has_citation": false,
+      "success": true
+    },
+    {
+      "id": "Q11",
+      "question": "What is the Schr\u00c3\u00b6dinger equation and what does the wave function represent?",
+      "category": "Quantum Mechanics",
+      "answer": "The Schr\u00f6dinger equation is a fundamental equation in quantum mechanics that describes how the quantum state of a physical system changes with time. It is given by:\n\n\\[ i\\hbar \\frac{\\partial}{\\partial t} \\Psi(\\mathbf{r}, t) = \\hat{H} \\Psi(\\mathbf{r}, t) \\]\n\nwhere \\(i\\) is the imaginary unit, \\(\\hbar\\) is the reduced Planck's constant, \\(\\Psi(\\mathbf{r}, t)\\) is the wave function of the system, and \\(\\hat{H}\\) is the Hamiltonian operator representing the total energy of the system.\n\nThe wave function \\(\\Psi(\\mathbf{r}, t)\\) represents the quantum state of a system. Its square modulus \\(|\\Psi(\\mathbf{r}, t)|^2\\) gives the probability density of finding the particle at position \\(\\mathbf{r}\\) at time \\(t\\).",
+      "duration_sec": 10.652902,
+      "keywords_matched": [
+        "wave function",
+        "psi",
+        "quantum state"
+      ],
+      "keyword_match_pct": 0.6,
+      "has_citation": false,
+      "success": true
+    },
+    {
+      "id": "Q12",
+      "question": "Explain the photoelectric effect and how it supports the particle theory of light.",
+      "category": "Modern Physics",
+      "answer": "The photoelectric effect is the emission of electrons from a metal surface when light shines on it. This phenomenon supports the particle theory of light because it shows that light behaves as discrete packets of energy, or photons. For the photoelectric effect to occur, the incident light must have a frequency high enough to overcome the work function of the metal (the minimum energy required to remove an electron). The energy of each photon is proportional to its frequency, and this relationship can only be explained if light consists of particles (photons) with discrete energies. Additionally, the number of emitted electrons depends on the intensity of the light but not its frequency, which aligns with photons having individual, fixed energies rather than a continuous spectrum of energy.",
+      "duration_sec": 7.732528,
+      "keywords_matched": [
+        "photoelectric",
+        "photon",
+        "work function"
+      ],
+      "keyword_match_pct": 0.5,
+      "has_citation": false,
+      "success": true
+    },
+    {
+      "id": "Q13",
+      "question": "What is time dilation in special relativity and how is it derived?",
+      "category": "Relativity",
+      "answer": "Time dilation in special relativity refers to the phenomenon where time appears to move slower for an object in motion relative to a stationary observer. It is derived from the Lorentz transformation equations, which describe how space and time coordinates change between two inertial frames moving at a constant velocity relative to each other. The time dilation effect can be expressed by the equation:\n\n\\[ \\Delta t' = \\gamma \\Delta t \\]\n\nwhere \\( \\Delta t \\) is the time interval measured in the stationary frame, \\( \\Delta t' \\) is the time interval measured in the moving frame, and \\( \\gamma \\) (the Lorentz factor) is given by:\n\n\\[ \\gamma = \\frac{1}{\\sqrt{1 - \\frac{v^2}{c^2}}} \\]\n\nHere, \\( v \\) is the relative velocity between the frames, and \\( c \\) is the speed of light in a vacuum.",
+      "duration_sec": 9.819391,
+      "keywords_matched": [
+        "relativity",
+        "time dilation",
+        "lorentz",
+        "speed of light",
+        "gamma"
+      ],
+      "keyword_match_pct": 0.8333333333333334,
+      "has_citation": false,
+      "success": true
+    },
+    {
+      "id": "Q14",
+      "question": "What is length contraction in relativity?",
+      "category": "Relativity",
+      "answer": "Length contraction in special relativity is the phenomenon where a moving object's length is measured to be shorter than its length at rest, along the direction of motion. This effect becomes significant as the object's speed approaches the speed of light.",
+      "duration_sec": 3.178331,
+      "keywords_matched": [
+        "length contraction",
+        "relativity",
+        "motion"
+      ],
+      "keyword_match_pct": 0.6,
+      "has_citation": false,
+      "success": true
+    },
+    {
+      "id": "Q15",
+      "question": "Explain nuclear binding energy and mass defect.",
+      "category": "Nuclear Physics",
+      "answer": "Nuclear binding energy is the energy required to disassemble a nucleus into its constituent protons and neutrons. It is the energy \"bound\" in the strong nuclear force that holds the nucleus together against the repulsive electromagnetic forces between protons.\n\nMass defect refers to the difference in mass between an atomic nucleus and the sum of the masses of its free constituent protons and neutrons. This mass difference is converted into the binding energy, as described by Einstein's equation \\(E = mc^2\\). The mass defect indicates that the combined mass of the nucleons (protons and neutrons) when they exist separately is greater than the mass of the nucleus when they are bound together.",
+      "duration_sec": 7.907364,
+      "keywords_matched": [
+        "binding energy",
+        "mass defect",
+        "nuclear",
+        "e = mc^2"
+      ],
+      "keyword_match_pct": 0.6666666666666666,
+      "has_citation": false,
+      "success": true
+    },
+    {
+      "id": "Q16",
+      "question": "Explain double-slit interference of light.",
+      "category": "Optics",
+      "answer": "Double-slit interference of light occurs when light passes through two closely spaced slits and creates an interference pattern on a screen due to the interaction of the light waves from each slit. The light waves interfere constructively (amplifying each other) at points where their peaks align, and destructively (canceling each other out) where a peak meets a trough. This results in a characteristic pattern of bright and dark fringes on the screen, demonstrating wave-like behavior of light.",
+      "duration_sec": 5.458157,
+      "keywords_matched": [
+        "interference",
+        "double-slit",
+        "fringe"
+      ],
+      "keyword_match_pct": 0.42857142857142855,
+      "has_citation": false,
+      "success": true
+    },
+    {
+      "id": "Q17",
+      "question": "What is Heisenberg's uncertainty principle and what are its conjugate variables?",
+      "category": "Quantum Mechanics",
+      "answer": "Heisenberg's uncertainty principle states that it is impossible to simultaneously determine the exact position and momentum of a particle. The more precisely one property is measured, the less precisely the other can be controlled or determined. Conjugate variables in this context are position (x) and momentum (p), where:\n\n- Position \\( x \\)\n- Momentum \\( p = m \\cdot v \\) (mass times velocity)\n\nThe principle is often expressed mathematically as:\n\\[ \\Delta x \\cdot \\Delta p \\geq \\frac{\\hbar}{2} \\]\nwhere \\( \\Delta x \\) is the uncertainty in position, \\( \\Delta p \\) is the uncertainty in momentum, and \\( \\hbar \\) is the reduced Planck's constant.",
+      "duration_sec": 8.413144,
+      "keywords_matched": [
+        "uncertainty principle",
+        "heisenberg",
+        "position",
+        "momentum",
+        "hbar",
+        "delta x",
+        "delta p"
+      ],
+      "keyword_match_pct": 1.0,
+      "has_citation": false,
+      "success": true
+    },
+    {
+      "id": "Q18",
+      "question": "Explain the difference between elastic and inelastic scattering.",
+      "category": "Mechanics",
+      "answer": "Elastic scattering involves interactions where both momentum and kinetic energy are conserved. Examples include photon-photon scattering or neutron scattering from nuclei, where the scattered particles emerge with the same speed as before the collision but in a different direction.\n\nIn contrast, inelastic scattering results in a transfer of energy between the interacting particles, leading to a change in their kinetic energy. This often occurs when one particle transfers some of its energy to another, such as in electron scattering from atoms or molecules, where the scattered particle emerges with reduced kinetic energy and the target may be excited or ionized.",
+      "duration_sec": 6.578468,
+      "keywords_matched": [
+        "scattering",
+        "collision",
+        "elastic",
+        "inelastic",
+        "kinetic energy",
+        "momentum"
+      ],
+      "keyword_match_pct": 1.0,
+      "has_citation": false,
+      "success": true
+    },
+    {
+      "id": "Q24",
+      "question": "How does Bernoulli's principle explain lift in aerodynamics?",
+      "category": "In Scope (Edge)",
+      "answer": "Bernoulli's principle explains lift in aerodynamics by stating that an increase in the velocity of a fluid (in this case, air) results in a decrease in pressure. In an airplane wing, the shape is designed with a curved upper surface and a flatter lower surface. This design causes the air moving over the top surface to travel faster than the air beneath the wing. According to Bernoulli's principle, the faster-moving air above creates lower pressure compared to the higher pressure below the wing. This pressure difference generates an upward force, or lift, which helps the airplane ascend and maintain flight.",
+      "duration_sec": 7.057775,
+      "keywords_matched": [
+        "bernoulli",
+        "lift",
+        "pressure",
+        "velocity",
+        "fluid",
+        "wing"
+      ],
+      "keyword_match_pct": 1.0,
+      "has_citation": false,
+      "success": true
+    },
+    {
+      "id": "Q25",
+      "question": "What is thermite and what is the physics of its high-temperature burn?",
+      "category": "In Scope (Edge)",
+      "answer": "Thermite is an aluminothermic reaction mixture used to produce extremely high temperatures, typically for welding metal or cutting through thick metal. It consists primarily of a metal oxide (such as iron(III) oxide) and aluminum powder. The physics of its high-temperature burn involves the exothermic reaction where aluminum oxidizes rapidly, releasing heat that reduces the metal oxide to its elemental form:\n\n\\[ \\text{Fe}_2\\text{O}_3 + 2\\text{Al} \\rightarrow 2\\text{Fe} + \\text{Al}_2\\text{O}_3 + \\text{heat} \\]\n\nThe reaction is highly exothermic, generating temperatures up to about 2700\u00b0C (4900\u00b0F), which is sufficient to melt many metals.",
+      "duration_sec": 8.965548,
+      "keywords_matched": [
+        "thermite",
+        "temperature",
+        "burn",
+        "heat"
+      ],
+      "keyword_match_pct": 0.6666666666666666,
+      "has_citation": false,
+      "success": true
+    }
+  ]
+}

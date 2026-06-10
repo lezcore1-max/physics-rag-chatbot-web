@@ -1,0 +1,152 @@
+[
+  {
+    "id": "Q01",
+    "question": "What is Newton's second law of motion and how is it expressed mathematically?",
+    "category": "Mechanics",
+    "ground_truth_keywords": ["force", "mass", "acceleration", "f = ma", "second law"]
+  },
+  {
+    "id": "Q02",
+    "question": "Explain the conservation of momentum in collisions.",
+    "category": "Mechanics",
+    "ground_truth_keywords": ["momentum", "conservation", "collision", "elastic", "inelastic", "external force"]
+  },
+  {
+    "id": "Q03",
+    "question": "What is torque and how does it relate to angular acceleration?",
+    "category": "Mechanics",
+    "ground_truth_keywords": ["torque", "angular acceleration", "moment of inertia", "rotational", "t = ia"]
+  },
+  {
+    "id": "Q04",
+    "question": "Define Bernoulli's equation and explain its physical significance.",
+    "category": "Fluid Dynamics",
+    "ground_truth_keywords": ["bernoulli", "pressure", "velocity", "height", "conservation of energy", "fluid"]
+  },
+  {
+    "id": "Q05",
+    "question": "What is the second law of thermodynamics in terms of entropy?",
+    "category": "Thermodynamics",
+    "ground_truth_keywords": ["entropy", "second law", "thermodynamics", "disorder", "reversible", "irreversible"]
+  },
+  {
+    "id": "Q06",
+    "question": "How does Coulomb's law describe the force between two charges?",
+    "category": "Electromagnetism",
+    "ground_truth_keywords": ["coulomb", "charge", "force", "inverse square", "q1", "q2", "r^2"]
+  },
+  {
+    "id": "Q07",
+    "question": "State Gauss's law for electricity and explain electric flux.",
+    "category": "Electromagnetism",
+    "ground_truth_keywords": ["gauss", "electric flux", "charge enclosed", "epsilon_0", "surface"]
+  },
+  {
+    "id": "Q08",
+    "question": "What is Faraday's law of induction and how does Lenz's law determine the direction of induced current?",
+    "category": "Electromagnetism",
+    "ground_truth_keywords": ["faraday", "induction", "magnetic flux", "lenz", "opposition", "change"]
+  },
+  {
+    "id": "Q09",
+    "question": "Explain Maxwell's equations and how they predict electromagnetic waves.",
+    "category": "Electromagnetism",
+    "ground_truth_keywords": ["maxwell", "equations", "electromagnetic", "speed of light", "induction"]
+  },
+  {
+    "id": "Q10",
+    "question": "Describe the wave-particle duality and the de Broglie wavelength.",
+    "category": "Quantum Mechanics",
+    "ground_truth_keywords": ["wave-particle", "de broglie", "wavelength", "momentum", "planck", "lambda = h/p"]
+  },
+  {
+    "id": "Q11",
+    "question": "What is the Schrödinger equation and what does the wave function represent?",
+    "category": "Quantum Mechanics",
+    "ground_truth_keywords": ["schrodinger", "wave function", "probability amplitude", "psi", "quantum state"]
+  },
+  {
+    "id": "Q12",
+    "question": "Explain the photoelectric effect and how it supports the particle theory of light.",
+    "category": "Modern Physics",
+    "ground_truth_keywords": ["photoelectric", "photon", "work function", "threshold frequency", "einstein", "energy quantum"]
+  },
+  {
+    "id": "Q13",
+    "question": "What is time dilation in special relativity and how is it derived?",
+    "category": "Relativity",
+    "ground_truth_keywords": ["relativity", "time dilation", "lorentz", "speed of light", "proper time", "gamma"]
+  },
+  {
+    "id": "Q14",
+    "question": "What is length contraction in relativity?",
+    "category": "Relativity",
+    "ground_truth_keywords": ["length contraction", "relativity", "lorentz", "proper length", "motion"]
+  },
+  {
+    "id": "Q15",
+    "question": "Explain nuclear binding energy and mass defect.",
+    "category": "Nuclear Physics",
+    "ground_truth_keywords": ["binding energy", "mass defect", "nuclear", "e = mc^2", "fusion", "fission"]
+  },
+  {
+    "id": "Q16",
+    "question": "Explain double-slit interference of light.",
+    "category": "Optics",
+    "ground_truth_keywords": ["interference", "double-slit", "coherent", "fringe", "maxima", "minima", "phase"]
+  },
+  {
+    "id": "Q17",
+    "question": "What is Heisenberg's uncertainty principle and what are its conjugate variables?",
+    "category": "Quantum Mechanics",
+    "ground_truth_keywords": ["uncertainty principle", "heisenberg", "position", "momentum", "hbar", "delta x", "delta p"]
+  },
+  {
+    "id": "Q18",
+    "question": "Explain the difference between elastic and inelastic scattering.",
+    "category": "Mechanics",
+    "ground_truth_keywords": ["scattering", "collision", "elastic", "inelastic", "kinetic energy", "momentum"]
+  },
+  {
+    "id": "Q19",
+    "question": "What is the chemistry of combustion?",
+    "category": "Out of Scope (Borderline)",
+    "ground_truth_keywords": ["combustion", "reaction", "fuel", "oxygen", "chemical bond", "hydrocarbon"]
+  },
+  {
+    "id": "Q20",
+    "question": "How do deep neural networks learn via backpropagation?",
+    "category": "Out of Scope (Borderline)",
+    "ground_truth_keywords": ["neural networks", "backpropagation", "gradient descent", "weights", "learning rate"]
+  },
+  {
+    "id": "Q21",
+    "question": "What causes global climate change and how does the greenhouse effect work?",
+    "category": "Out of Scope (Borderline)",
+    "ground_truth_keywords": ["greenhouse", "co2", "climate change", "radiation", "atmosphere"]
+  },
+  {
+    "id": "Q22",
+    "question": "How does DNA replication work in molecular biology?",
+    "category": "Out of Scope (Borderline)",
+    "ground_truth_keywords": ["dna", "replication", "polymerase", "helix", "base pairs"]
+  },
+  {
+    "id": "Q23",
+    "question": "What is the Black-Scholes equation and how is it used in options pricing?",
+    "category": "Out of Scope (Borderline)",
+    "ground_truth_keywords": ["black-scholes", "options", "volatility", "arbitrage", "derivative"]
+  },
+  {
+    "id": "Q24",
+    "question": "How does Bernoulli's principle explain lift in aerodynamics?",
+    "category": "In Scope (Edge)",
+    "ground_truth_keywords": ["bernoulli", "lift", "pressure", "velocity", "fluid", "wing"]
+  },
+  {
+    "id": "Q25",
+    "question": "What is thermite and what is the physics of its high-temperature burn?",
+    "category": "In Scope (Edge)",
+    "ground_truth_keywords": ["thermite", "temperature", "burn", "heat", "iron oxide", "aluminium"]
+  }
+]
