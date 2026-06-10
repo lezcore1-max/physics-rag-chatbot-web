@@ -24,3 +24,4 @@ data/ingest_checkpoint.json
 
 # Large raw books (prevent pushing 100MB+ PDFs to Github)
 data/raw/
+data/chroma_db_backup/
