@@ -39,7 +39,7 @@ MMR_LAMBDA      = 0.7   # 0=max diversity, 1=max relevance — MMR balance
 FETCH_K         = 30    # MMR considers top-30 before selecting TOP_K
 
 # ── Domain Guard ─────────────────────────────────────────────────────
-DOMAIN_THRESHOLD = 0.30   # Cosine similarity below this → refuse as OOS (raised from 0.35)
+DOMAIN_THRESHOLD = 0.25   # Cosine similarity below this → refuse as OOS (raised from 0.35)
 MAX_QUERY_CHARS  = 500    # Input truncation limit
 
 # ── Retrieval Strength Bands (renamed from "Confidence" for accuracy) ─
