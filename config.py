@@ -3,7 +3,13 @@ config.py — Physics RAG Chatbot Central Configuration
 All tunable parameters live here. Change once, affects everything.
 """
 
+import os 
 import os
+import streamlit as st
+
+# Load secrets from Streamlit Cloud if available
+if hasattr(st, "secrets") and "GROQ_API_KEY" in st.secrets:
+    os.environ["GROQ_API_KEY"] = st.secrets["GROQ_API_KEY"]
 
 # ── Paths ────────────────────────────────────────────────────────────
 BASE_DIR        = os.path.dirname(os.path.abspath(__file__))
