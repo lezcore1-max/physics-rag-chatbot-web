@@ -28,7 +28,7 @@ import hashlib
 import pickle
 import shutil
 import argparse
-import urllib.request
+
 from pathlib import Path
 from typing import Optional
 
@@ -37,12 +37,11 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 from config import (
     DATA_DIR, FEYNMAN_DIR, CHROMA_DIR, CHROMA_BACKUP, BM25_CACHE,
     CHECKPOINT_FILE, CHECKPOINT_EVERY,
-    EMBED_MODEL, OLLAMA_BASE_URL,
+    EMBED_MODEL,
     CHUNK_CONFIG, SEPARATORS,
     OPENSTAX_NOISE_PATTERNS, OPENSTAX_TOPIC_MAP,
     EQUATION_MANGLE_RATIO,
 )
-
 from langchain_core.documents import Document
 from langchain_text_splitters import RecursiveCharacterTextSplitter
 from langchain_chroma import Chroma
@@ -379,21 +378,7 @@ def main(reset: bool = False):
         print("[DONE] Nothing new to ingest!")
     else:
         # ── Embed & store ─────────────────────────────────────────────────────
-        print(f"\n[EMBED] Initialising nomic-embed-text via Ollama...")
-
-        # Pre-flight: verify Ollama is reachable on the expected port
-        try:
-            resp = urllib.request.urlopen(OLLAMA_BASE_URL, timeout=5)
-            print(f"[EMBED] Ollama reachable at {OLLAMA_BASE_URL} [OK]")
-        except Exception as conn_err:
-            print(f"[EMBED] ERROR: Cannot reach Ollama at {OLLAMA_BASE_URL}")
-            print(f"        Make sure 'ollama serve' is running in a terminal!")
-            print(f"        Detail: {conn_err}")
-            sys.exit(1)
-
-        # Force the OLLAMA_HOST env var so all sub-clients use the right port
-        os.environ["OLLAMA_HOST"] = OLLAMA_BASE_URL
-
+        print(f"\n[EMBED] Initialising local sentence-transformers embeddings...")
         embeddings = LocalSentenceTransformerEmbeddings()
 
         print(f"[EMBED] Embedding {len(new_chunks)} chunks in batches...")

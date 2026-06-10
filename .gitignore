@@ -10,11 +10,9 @@ venv/
 .venv/
 env/
 ENV/
+myvenv/
 
 # Local Database & Cache Indices
-data/chroma_db/
-data/chroma_db_backup/
-data/bm25_index.pkl
 data/ingest_checkpoint.json
 
 # Environment secrets

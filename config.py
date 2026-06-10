@@ -16,11 +16,11 @@ CHECKPOINT_FILE = os.path.join(BASE_DIR, "data", "ingest_checkpoint.json")
 RESULTS_DIR     = os.path.join(BASE_DIR, "tests", "results")
 
 # ── Ollama Models ────────────────────────────────────────────────────
-EMBED_MODEL     = "nomic-embed-text"
-LLM_MODEL       = "qwen2.5:7b"
+EMBED_MODEL = "nomic-ai/nomic-embed-text-v1"
+LLM_MODEL = "llama-3.1-8b-instant"
 LLM_TEMPERATURE = 0        # CRITICAL: 0 = deterministic, no hallucination variance
 LLM_MAX_TOKENS  = 512      # Cap response length — prevents rambling answers
-OLLAMA_BASE_URL = os.getenv("OLLAMA_HOST", "http://localhost:11434")
+GROQ_API_KEY = os.getenv("GROQ_API_KEY", "")
 
 # ── Chunking (source-specific for derivation continuity) ─────────────
 CHUNK_CONFIG = {

@@ -12,13 +12,13 @@ from typing import List, Optional, Tuple, Dict, Any, Union
 sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from config import (
-    LLM_MODEL, LLM_TEMPERATURE, LLM_MAX_TOKENS, OLLAMA_BASE_URL
+    LLM_MODEL, LLM_TEMPERATURE, LLM_MAX_TOKENS, GROQ_API_KEY
 )
 from src.confidence import compute_retrieval_strength
 from src.domain_guard import sanitise_query, REFUSAL_MESSAGE
 
 from langchain_core.documents import Document
-from langchain_ollama import ChatOllama
+from langchain_groq import ChatGroq
 
 # ── RAG Prompt Template ───────────────────────────────────────────────────────
 RAG_PROMPT_TEMPLATE = """You are a physics tutor. Answer the student's question STRICTLY using ONLY the provided context below.
@@ -39,23 +39,19 @@ Student Question: {question}
 Answer (strictly from context, with citations):"""
 
 
-def init_llm() -> Optional[ChatOllama]:
-    """
-    Initialise the ChatOllama model and verify connectivity.
-    Returns None if Ollama is not running or the model is not found.
-    """
+def init_llm() -> Optional[ChatGroq]:
     try:
-        llm = ChatOllama(
+        llm = ChatGroq(
             model=LLM_MODEL,
             temperature=LLM_TEMPERATURE,
-            num_predict=LLM_MAX_TOKENS,
-            base_url=OLLAMA_BASE_URL,
+            max_tokens=LLM_MAX_TOKENS,
+            api_key=GROQ_API_KEY,
         )
         # Test connection with a short query
         llm.invoke("ping")
         return llm
     except Exception as e:
-        print(f"WARNING: Could not connect to Ollama model '{LLM_MODEL}': {e}")
+        print(f"WARNING: Could not connect to Groq model '{LLM_MODEL}': {e}")
         return None
 
 

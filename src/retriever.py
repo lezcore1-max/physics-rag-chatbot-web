@@ -13,7 +13,7 @@ sys.path.insert(0, os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 
 from config import (
     CHROMA_DIR, BM25_CACHE, TOP_K, FINAL_K, BM25_WEIGHT, SEMANTIC_WEIGHT,
-    MMR_LAMBDA, FETCH_K, RERANKER_MODEL, EMBED_MODEL, OLLAMA_BASE_URL
+    MMR_LAMBDA, FETCH_K, RERANKER_MODEL, EMBED_MODEL
 )
 
 from langchain_core.documents import Document
