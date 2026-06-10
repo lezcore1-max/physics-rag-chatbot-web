@@ -235,6 +235,8 @@ if "avg_strength" not in st.session_state:
     st.session_state.avg_strength = 0.0
 if "strength_scores" not in st.session_state:
     st.session_state.strength_scores = []
+if "chat_history" not in st.session_state:
+    st.session_state.chat_history = []  # list of (human, ai) tuples for memory
 
 
 # ── Sidebar ───────────────────────────────────────────────────────────────────
@@ -256,7 +258,7 @@ with st.sidebar:
             st.warning("DB: Empty ⚠️")
             
     if not is_llm_running:
-        st.info("💡 Start Ollama (`ollama serve`) and pull the model (`ollama pull qwen2.5:7b`) to enable LLM responses.")
+        st.info("💡 💡 LLM powered by Groq API. Check that GROQ_API_KEY is set in Streamlit secrets.")
 
     # 2. Corpus Details
     st.subheader("Physics Corpus")
@@ -374,10 +376,19 @@ if user_query:
     st.session_state.queries_count += 1
     
     # Run the pipeline
+    # Run the pipeline
     with st.spinner("Searching corpus & generating answer..."):
         is_refused, response_dict, prompt, citations, strength_meta = query_pipeline(
             user_query, retriever, domain_guard
         )
+        
+        # Inject chat history into prompt for memory
+        if not is_refused and prompt and st.session_state.chat_history:
+            history_text = "\n".join([
+                f"Student: {h}\nTutor: {a}"
+                for h, a in st.session_state.chat_history[-5:]  # last 5 turns
+            ])
+            prompt = f"Previous conversation:\n{history_text}\n\n{prompt}"
         
     # Check if refused or empty retrieval
     if is_refused:
@@ -429,7 +440,7 @@ if user_query:
                     full_response = f"LLM streaming failed: {e}"
                     answer_placeholder.error(full_response)
             else:
-                full_response = "⚠️ Ollama is offline. Could not generate the final response. Please read the retrieved sources below."
+                full_response = "⚠️  LLM is offline. Could not generate the final response. Please read the retrieved sources below."
                 answer_placeholder.warning(full_response)
                 
             # 3. Render Citations expander
@@ -469,6 +480,11 @@ if user_query:
                 "retrieval_strength": strength_meta,
                 "refused": False
             })
+            
+            # Save to memory (last 5 turns kept)
+            st.session_state.chat_history.append((user_query, full_response))
+            if len(st.session_state.chat_history) > 5:
+                st.session_state.chat_history.pop(0)
             
             # Update stats dynamically by rerunning
             st.rerun()
