@@ -41,19 +41,23 @@ Answer (strictly from context, with citations):"""
 
 def init_llm() -> Optional[ChatGroq]:
     try:
+        import streamlit as st
+        api_key = st.secrets.get("GROQ_API_KEY", os.getenv("GROQ_API_KEY", ""))
+    except Exception:
+        api_key = os.getenv("GROQ_API_KEY", "")
+
+    try:
         llm = ChatGroq(
             model=LLM_MODEL,
             temperature=LLM_TEMPERATURE,
             max_tokens=LLM_MAX_TOKENS,
-            api_key=GROQ_API_KEY,
+            api_key=api_key,
         )
-        # Test connection with a short query
         llm.invoke("ping")
         return llm
     except Exception as e:
         print(f"WARNING: Could not connect to Groq model '{LLM_MODEL}': {e}")
         return None
-
 
 def get_citation_tag(doc: Document) -> str:
     """Construct a clean, standard citation tag for the document."""
