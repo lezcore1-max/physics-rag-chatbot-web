@@ -1,8 +1,8 @@
 {
-  "timestamp": "2026-06-11T05:06:01.830135",
+  "timestamp": "2026-06-11T22:22:47.445934",
   "model": "llama-3.1-8b-instant",
   "metrics": {
-    "citation_accuracy": 1.0,
+    "citation_accuracy": 0.9444444444444444,
     "hallucination_rate": 0.2222222222222222,
     "oos_refusal_rate": 1.0,
     "edge_case_pass_rate": 1.0,
@@ -33,14 +33,14 @@
         "Score: 1.00 \u2014 Strong match. Multiple passages closely align with your question. Answer is well-supported by the corpus."
       ],
       "is_hallucinated": true,
-      "duration_sec": 1.443896,
+      "duration_sec": 1.970379,
       "type": "physics"
     },
     {
       "id": "Q02",
       "question": "Explain the conservation of momentum in collisions.",
       "category": "Mechanics",
-      "answer": "Let's talk about the conservation of momentum in collisions. This is a really important concept in physics, and it's actually quite straightforward once you understand it.\n\nSo, you know how we've been talking about momentum, right? It's the product of an object's mass and velocity. And we've also talked about how momentum is conserved whenever the net external force on a system is zero. This is a fundamental principle in physics, and it's really useful for analyzing collisions.\n\nNow, when we talk about collisions, we're talking about situations where objects interact with each other and transfer momentum. But here's the key thing: the total momentum of the system remains constant. This is what we mean by conservation of momentum.\n\nLet's look at an example. Imagine two billiard balls colliding. Before the collision, each ball has its own momentum, which is the product of its mass and velocity. The total momentum of the system is the sum of these two momenta. And after the collision, the two balls have different momenta, but the total momentum of the system remains the same. This is shown in Figure 9.14 [Source: OpenStax Vol 1, p.409].\n\nIn fact, we can generalize this result to any system of objects. The total momentum of the system is constant in time, or better, is conserved. This is given by Equation 9.17 [Source: OpenStax Vol 1, p.409], which is the definition of the total (or net) momentum of a system of N interacting objects.\n\nNow, there are two requirements for momentum conservation to hold. First, the mass of the system must remain constant during the interaction. This means that any mass one object gains is balanced by the loss of that mass from another. And second, the net external force on the system must be zero. This means that all the forces exerted by the objects on each other must cancel out.\n\nSo, to summarize, the conservation of momentum in collisions is a fundamental principle in physics that states that the total momentum of a system remains constant in time. This is a really powerful tool for analyzing collisions, and it's essential for understanding many phenomena in physics.\n\nI hope this helps! Do you have any questions about this?",
+      "answer": "Let's talk about the conservation of momentum in collisions. This is a really important concept in physics, and it's actually quite straightforward once you understand it.\n\nSo, you know how we've been talking about momentum and how it's a measure of an object's mass and velocity? Well, when two objects collide, their momenta are conserved. This means that the total momentum before the collision is equal to the total momentum after the collision.\n\nLet's look at an example. Imagine two billiard balls colliding, like in Figure 9.14 [Source: OpenStax Vol 1, p.409]. Before the collision, the two billiard balls travel with momenta \\(p_1\\) and \\(p_2\\). The total momentum of the system is the sum of these, as shown by the red vector labeled \\(p_{\\text{total}}\\) on the left. After the collision, the two billiard balls travel with different momenta \\(p_1'\\) and \\(p_2'\\). But here's the key point: the total momentum has not changed, as shown by the red vector arrow \\(p_{\\text{total}}\\) on the right.\n\nThis is because the momentum is conserved, which means that the total momentum of the system remains constant in time. This is a fundamental principle in physics, and it's a result of Newton's laws.\n\nNow, you might be wondering what happens if the objects don't stick together after the collision. Well, in that case, the momentum is still conserved, but the objects will move off in different directions. The total momentum will still be the same, but the individual momenta of the objects will be different.\n\nSo, to summarize, the conservation of momentum in collisions is a fundamental principle in physics that states that the total momentum of a system remains constant in time. This is a result of Newton's laws, and it's a crucial concept in understanding how objects interact with each other.\n\nAs we discussed in the chapter on collisions, there are two requirements for momentum conservation: the mass of the system must remain constant during the interaction, and the net external force on the system must be zero [Source: OpenStax Vol 1, p.409]. If these conditions are met, then the momentum is conserved, and we can use this principle to analyze collisions and understand how objects interact with each other.\n\nI hope this helps clarify things! Let me know if you have any questions or need further clarification.",
       "citations_returned": [
         "[Source: OpenStax Vol 1, p.391]",
         "[Source: OpenStax Vol 1, p.452]",
@@ -58,7 +58,7 @@
         "Score: 1.00 \u2014 Strong match. Multiple passages closely align with your question. Answer is well-supported by the corpus."
       ],
       "is_hallucinated": false,
-      "duration_sec": 1.098596,
+      "duration_sec": 1.974927,
       "type": "physics"
     },
     {
@@ -83,14 +83,14 @@
         "Score: 0.94 \u2014 Strong match. Multiple passages closely align with your question. Answer is well-supported by the corpus."
       ],
       "is_hallucinated": false,
-      "duration_sec": 3.73377,
+      "duration_sec": 9.126189,
       "type": "physics"
     },
     {
       "id": "Q04",
       "question": "Define Bernoulli's equation and explain its physical significance.",
       "category": "Fluid Dynamics",
-      "answer": "Let's dive into Bernoulli's equation and its significance. \n\nBernoulli's equation is a relation between pressure and flow speed in a fluid, derived from the principle of conservation of energy. It's a very useful equation that helps us understand how the mechanical energy of a fluid changes as it flows through a pipe or channel. \n\nAccording to the context, Bernoulli's equation is a statement of conservation of energy for an incompressible fluid in the absence of friction [Source: OpenStax Vol 1, p.697]. It's a general form that includes three terms, and it's broadly applicable. \n\nThe equation is derived by considering the work done on the fluid due to the conservative force of gravity and the change in kinetic energy of the fluid. The change in potential energy is also taken into account, and the energy equation is then rearranged to give Bernoulli's equation [Source: OpenStax Vol 1, p.696]. \n\nNow, let's talk about its physical significance. Bernoulli's equation confirms that the pressure change due to the weight of a fluid is equal to the change in potential energy [Source: OpenStax Vol 1, p.697]. This means that as the depth of the fluid increases, the pressure also increases. \n\nIn a dynamic situation, the pressures at the same height in different parts of the fluid may be different if they have different speeds of flow [Source: OpenStax Vol 1, p.696]. This is because the kinetic energy of the fluid also plays a role in determining the pressure. \n\nSo, in summary, Bernoulli's equation is a powerful tool that helps us understand the relationship between pressure and flow speed in a fluid. It's a statement of conservation of energy that takes into account the work done on the fluid, the change in kinetic energy, and the change in potential energy.",
+      "answer": "LLM generation failed: Error code: 429 - {'error': {'message': 'Rate limit reached for model `llama-3.1-8b-instant` in organization `org_01ktqz7809et6beyd4p922vpch` service tier `on_demand` on tokens per minute (TPM): Limit 6000, Used 3961, Requested 2138. Please try again in 990ms. Need more tokens? Upgrade to Dev Tier today at https://console.groq.com/settings/billing', 'type': 'tokens', 'code': 'rate_limit_exceeded'}}",
       "citations_returned": [
         "[Source: OpenStax Vol 1, p.696]",
         "[Source: OpenStax Vol 1, p.697]",
@@ -98,7 +98,7 @@
         "[Source: OpenStax Vol 1, p.694]",
         "[Source: OpenStax Vol 1, p.695]"
       ],
-      "has_valid_citations": true,
+      "has_valid_citations": false,
       "precision": 1.0,
       "recall": 0.10416666666666667,
       "retrieval_strength": 0.8472409866126409,
@@ -108,7 +108,7 @@
         "Score: 0.85 \u2014 Strong match. Multiple passages closely align with your question. Answer is well-supported by the corpus."
       ],
       "is_hallucinated": false,
-      "duration_sec": 19.596009,
+      "duration_sec": 20.260076,
       "type": "physics"
     },
     {
@@ -133,7 +133,7 @@
         "Score: 1.00 \u2014 Strong match. Multiple passages closely align with your question. Answer is well-supported by the corpus."
       ],
       "is_hallucinated": false,
-      "duration_sec": 19.293197,
+      "duration_sec": 3.078066,
       "type": "physics"
     },
     {
@@ -158,14 +158,14 @@
         "Score: 1.00 \u2014 Strong match. Multiple passages closely align with your question. Answer is well-supported by the corpus."
       ],
       "is_hallucinated": false,
-      "duration_sec": 21.088769,
+      "duration_sec": 24.406007,
       "type": "physics"
     },
     {
       "id": "Q07",
       "question": "State Gauss's law for electricity and explain electric flux.",
       "category": "Electromagnetism",
-      "answer": "Let's dive into the world of electric flux and Gauss's law. \n\nFirst, let's talk about electric flux. Flux is a general concept in physics that can be applied to various fields, including electric fields. In the context of electric fields, flux refers to the amount of electric field that passes through a given surface. The electric flux through a surface is a measure of how much electric field is \"flowing\" through that surface.\n\nNow, let's look at Gauss's law, which is a fundamental concept in electrostatics. According to Gauss's law, the flux of the electric field through any closed surface, also called a Gaussian surface, is equal to the net charge enclosed divided by the permittivity of free space [Source: OpenStax Vol 2, p.242]. This equation holds for charges of either sign, because we define the area vector of a closed surface to point outward.\n\nMathematically, Gauss's law can be expressed as:\n\n\\[ \\Phi_E = \\frac{Q_{enc}}{\\epsilon_0} \\]\n\nwhere \\(\\Phi_E\\) is the electric flux, \\(Q_{enc}\\) is the net charge enclosed, and \\(\\epsilon_0\\) is the permittivity of free space.\n\nIn simpler terms, Gauss's law states that the electric flux through a closed surface is directly proportional to the charge enclosed within that surface. This law is a powerful tool for finding the electric fields of charge distributions exhibiting spatial symmetry.\n\nTo illustrate this concept, let's consider an example. Suppose we have a point charge enclosed within a Gaussian surface. The electric flux through this surface is given by:\n\n\\[ \\Phi_E = \\frac{q}{\\epsilon_0} \\]\n\nwhere \\(q\\) is the charge enclosed.\n\nNow, let's talk about the electric flux in terms of field lines. According to the context, the electric flux through a closed surface due to a charge outside that surface is zero [Source: OpenStax Vol 2, p.242]. This makes sense, because the electric field lines are not passing through the surface in this case.\n\nHowever, if the charge is enclosed within the surface, the electric flux is non-zero. The shape and size of the surface that encloses the charge do not matter, because all surfaces enclosing the same charge have the same flux [Source: OpenStax Vol 2, p.242].\n\nIn summary, electric flux is a measure of how much electric field is passing through a given surface, and Gauss's law states that",
+      "answer": "Let's dive into the world of electric flux and Gauss's law. \n\nFirst, let's talk about electric flux. Flux is a general concept in physics that can be applied to various fields, including electric fields. In the context of electric fields, flux refers to the amount of electric field that passes through a given surface. The electric flux through a surface is a measure of how much electric field is \"flowing\" through that surface.\n\nNow, let's look at Gauss's law, which is a fundamental concept in electrostatics. According to Gauss's law, the flux of the electric field through any closed surface, also called a Gaussian surface, is equal to the net charge enclosed divided by the permittivity of free space [Source: OpenStax Vol 2, p.242]. This equation holds for charges of either sign, because we define the area vector of a closed surface to point outward.\n\nMathematically, Gauss's law can be expressed as:\n\n\\[ \\Phi_E = \\frac{Q_{enc}}{\\epsilon_0} \\]\n\nwhere \\(\\Phi_E\\) is the electric flux, \\(Q_{enc}\\) is the net charge enclosed, and \\(\\epsilon_0\\) is the permittivity of free space.\n\nIn simpler terms, Gauss's law states that the electric flux through a closed surface is directly proportional to the charge enclosed within that surface. This law is a powerful tool for finding the electric fields of charge distributions exhibiting spatial symmetry.\n\nTo illustrate this concept, let's consider an example. Suppose we have a point charge enclosed within a Gaussian surface. The electric flux through this surface is given by:\n\n\\[ \\Phi_E = \\frac{q}{\\epsilon_0} \\]\n\nwhere \\(q\\) is the charge enclosed.\n\nNow, let's talk about the electric flux in terms of field lines. According to the context, the electric flux through a closed surface due to a charge outside that surface is zero [Source: OpenStax Vol 2, p.242]. This means that if there is no charge enclosed within the surface, the electric flux through that surface is also zero.\n\nIn summary, electric flux is a measure of the electric field that passes through a given surface, and Gauss's law states that the electric flux through a closed surface is directly proportional to the charge enclosed within that surface.",
       "citations_returned": [
         "[Source: OpenStax Vol 2, p.231]",
         "[Source: OpenStax Vol 2, p.242]",
@@ -183,7 +183,7 @@
         "Score: 0.98 \u2014 Strong match. Multiple passages closely align with your question. Answer is well-supported by the corpus."
       ],
       "is_hallucinated": true,
-      "duration_sec": 21.58085,
+      "duration_sec": 20.382185,
       "type": "physics"
     },
     {
@@ -208,7 +208,7 @@
         "Score: 1.00 \u2014 Strong match. Multiple passages closely align with your question. Answer is well-supported by the corpus."
       ],
       "is_hallucinated": false,
-      "duration_sec": 21.103326,
+      "duration_sec": 23.136794,
       "type": "physics"
     },
     {
@@ -233,7 +233,7 @@
         "Score: 1.00 \u2014 Strong match. Multiple passages closely align with your question. Answer is well-supported by the corpus."
       ],
       "is_hallucinated": false,
-      "duration_sec": 21.349375,
+      "duration_sec": 19.162956,
       "type": "physics"
     },
     {
@@ -258,7 +258,7 @@
         "Score: 0.91 \u2014 Strong match. Multiple passages closely align with your question. Answer is well-supported by the corpus."
       ],
       "is_hallucinated": true,
-      "duration_sec": 23.511502,
+      "duration_sec": 23.14515,
       "type": "physics"
     },
     {
@@ -283,14 +283,14 @@
         "Score: 0.47 \u2014 Partial match. The corpus contains related material but may not address your exact question. Verify key claims."
       ],
       "is_hallucinated": false,
-      "duration_sec": 22.469056,
+      "duration_sec": 24.755269,
       "type": "physics"
     },
     {
       "id": "Q12",
       "question": "Explain the photoelectric effect and how it supports the particle theory of light.",
       "category": "Modern Physics",
-      "answer": "Let's dive into the photoelectric effect and how it supports the particle theory of light.\n\nThe photoelectric effect is a phenomenon where electrons are emitted from a metal surface when it's exposed to a monochromatic electromagnetic wave of sufficiently short wavelength (or equivalently, above a threshold frequency) [Source: OpenStax Vol 3, p.250]. This means that when light hits the metal surface, it's not just the energy of the light that's being transferred, but rather the energy is being transferred in discrete packets, or quanta.\n\nNow, let's talk about the characteristics of the photoelectric effect. One of the key characteristics is that it's instantaneous, meaning that electrons are emitted almost immediately when the light hits the surface [Source: OpenStax Vol 3, p.251]. This is in contrast to classical physics, which would predict that it would take some time for the electrons to gain enough energy to leave the surface.\n\nAnother important characteristic is that the kinetic energy of the photoelectrons doesn't depend on the intensity of the incident radiation [Source: OpenStax Vol 3, p.251]. This means that even if the light is very weak, the electrons that are emitted still have the same amount of kinetic energy as if the light were much stronger.\n\nFinally, there's the presence of a cut-off frequency, which is the minimum frequency of light that's required to emit electrons from the metal surface [Source: OpenStax Vol 3, p.252]. This is a key piece of evidence that supports the particle theory of light, because it shows that light is not just a wave, but rather a collection of particles, or photons.\n\nNow, let's talk about how Einstein explained the photoelectric effect. He postulated that an electromagnetic wave carries its energy in discrete packets, or quanta, and that each photon moves at the speed of light and carries an energy quantum [Source: OpenStax Vol 3, p.252]. This means that the energy of a photon depends only on its frequency, and that each photon gives away all of its energy to only one electron on the metal surface.\n\nThe energy of a photon is given by the equation \\(E = hf\\), where \\(h\\) is Planck's constant and \\(f\\) is the frequency of the radiation [Source: OpenStax Vol 3, p.252]. This equation shows that the energy of a photon is directly proportional to its frequency, which is a key prediction of the particle theory of light.\n\nIn",
+      "answer": "Let's dive into the photoelectric effect and how it supports the particle theory of light.\n\nThe photoelectric effect is a phenomenon where electrons are emitted from a metal surface when it's exposed to a monochromatic electromagnetic wave of sufficiently short wavelength (or equivalently, above a threshold frequency) [Source: OpenStax Vol 3, p.250]. This means that when light hits the metal surface, it's not just the energy of the light that's being transferred, but rather the energy is being transferred in discrete packets, or quanta.\n\nNow, let's talk about the characteristics of the photoelectric effect. One of the key characteristics is that it's instantaneous, meaning that electrons are emitted almost immediately when the light hits the surface [Source: OpenStax Vol 3, p.251]. This is in contrast to classical physics, which would predict that it would take some time for the electrons to gain enough energy to leave the surface.\n\nAnother important characteristic is that the kinetic energy of the photoelectrons doesn't depend on the intensity of the incident radiation [Source: OpenStax Vol 3, p.251]. This means that even if the light is very weak, the electrons that are emitted still have the same amount of kinetic energy as if the light were much stronger.\n\nFinally, there's the presence of a cut-off frequency, which is the minimum frequency of light that's required to emit electrons from the metal surface [Source: OpenStax Vol 3, p.252]. This is a key piece of evidence that supports the particle theory of light, because it shows that light is not just a wave, but rather a collection of particles, or photons.\n\nNow, let's talk about how Einstein explained the photoelectric effect. He postulated that an electromagnetic wave carries its energy in discrete packets, or quanta, and that each photon moves at the speed of light and carries an energy quantum [Source: OpenStax Vol 3, p.252]. This means that the energy of a photon depends only on its frequency, and that the energy of a photon is given by the equation \\(E = hf\\), where \\(h\\) is Planck's constant and \\(f\\) is the frequency of the radiation [Source: OpenStax Vol 3, p.252].\n\nSo, to summarize, the photoelectric effect is a phenomenon where electrons are emitted from a metal surface when it's exposed to a monochromatic electromagnetic wave of sufficiently short wavelength. The characteristics of the photoelectric effect, such as",
       "citations_returned": [
         "[Source: OpenStax Vol 3, p.250]",
         "[Source: OpenStax Vol 3, p.252]",
@@ -308,7 +308,7 @@
         "Score: 0.79 \u2014 Strong match. Multiple passages closely align with your question. Answer is well-supported by the corpus."
       ],
       "is_hallucinated": false,
-      "duration_sec": 20.650755,
+      "duration_sec": 18.65156,
       "type": "physics"
     },
     {
@@ -333,14 +333,14 @@
         "Score: 0.83 \u2014 Strong match. Multiple passages closely align with your question. Answer is well-supported by the corpus."
       ],
       "is_hallucinated": true,
-      "duration_sec": 22.512046,
+      "duration_sec": 22.062117,
       "type": "physics"
     },
     {
       "id": "Q14",
       "question": "What is length contraction in relativity?",
       "category": "Relativity",
-      "answer": "Length contraction is a fascinating concept in relativity. Let's break it down together. \n\nIn classical mechanics, we expect that the distance between two points remains the same for all observers, regardless of their relative motion. However, in special relativity, we find that this isn't the case. \n\nWhen an object is moving relative to an observer, the observer will measure a shorter length for the object compared to its proper length, which is the length measured when the object is at rest relative to the observer. This phenomenon is known as length contraction. \n\nThe equation for length contraction is given by [Source: OpenStax Vol 3, p.199]:\n\\[ L = L_0 \\sqrt{1 - \\frac{v^2}{c^2}} \\]\nwhere \\( L \\) is the length measured by the observer, \\( L_0 \\) is the proper length, \\( v \\) is the relative velocity between the observer and the object, and \\( c \\) is the speed of light.\n\nIn other words, the length of an object appears shorter to an observer when it's moving relative to them. This effect becomes more pronounced as the object approaches relativistic speeds.\n\nTo illustrate this, let's consider an example. If we measure the length of a train car, all the passengers inside the train would agree on its length. However, if the train were traveling at relativistic speeds, an observer on the ground would see the train car as shorter than its proper length [Source: OpenStax Vol 3, p.198].\n\nSo, to summarize, length contraction is the decrease in the measured length of an object from its proper length when measured in a reference frame that is moving with respect to the object [Source: OpenStax Vol 3, p.199].",
+      "answer": "Length contraction is a fascinating concept in relativity. Let's break it down together. \n\nIn classical mechanics, we expect that the distance between two points remains the same for all observers, regardless of their relative motion. However, in special relativity, we find that this isn't the case. \n\nWhen an object is moving relative to an observer, the observer will measure a shorter length for the object compared to its proper length, which is the length measured when the object is at rest relative to the observer. This phenomenon is known as length contraction. \n\nThe equation for length contraction is given by [Source: OpenStax Vol 3, p.199]:\n\\[ L = L_0 \\sqrt{1 - \\frac{v^2}{c^2}} \\]\nwhere \\( L \\) is the length measured by the observer, \\( L_0 \\) is the proper length, \\( v \\) is the relative velocity between the observer and the object, and \\( c \\) is the speed of light.\n\nIn other words, the length of an object appears shorter to an observer when it's moving relative to them. This effect becomes more pronounced as the object approaches relativistic speeds.\n\nTo illustrate this, let's consider an example. If we measure the length of a train car, all the passengers inside the train would agree on its length. However, if the train were traveling at relativistic speeds, an observer on the ground would see the train car as shorter than its proper length [Source: OpenStax Vol 3, p.198].\n\nSo, to summarize, length contraction is the decrease in the measured length of an object from its proper length when measured in a reference frame that is moving with respect to the object. This effect is a fundamental consequence of special relativity and has been experimentally verified.",
       "citations_returned": [
         "[Source: OpenStax Vol 3, p.202]",
         "[Source: OpenStax Vol 3, p.231]",
@@ -358,7 +358,7 @@
         "Score: 0.94 \u2014 Strong match. Multiple passages closely align with your question. Answer is well-supported by the corpus."
       ],
       "is_hallucinated": false,
-      "duration_sec": 22.320502,
+      "duration_sec": 21.845638,
       "type": "physics"
     },
     {
@@ -383,7 +383,7 @@
         "Score: 0.99 \u2014 Strong match. Multiple passages closely align with your question. Answer is well-supported by the corpus."
       ],
       "is_hallucinated": false,
-      "duration_sec": 22.194644,
+      "duration_sec": 24.083175,
       "type": "physics"
     },
     {
@@ -408,7 +408,7 @@
         "Score: 1.00 \u2014 Strong match. Multiple passages closely align with your question. Answer is well-supported by the corpus."
       ],
       "is_hallucinated": false,
-      "duration_sec": 24.356128,
+      "duration_sec": 23.09519,
       "type": "physics"
     },
     {
@@ -433,7 +433,7 @@
         "Score: 0.94 \u2014 Strong match. Multiple passages closely align with your question. Answer is well-supported by the corpus."
       ],
       "is_hallucinated": false,
-      "duration_sec": 19.9972,
+      "duration_sec": 20.486881,
       "type": "physics"
     },
     {
@@ -458,7 +458,7 @@
         "Score: 0.40 \u2014 Weak match. Retrieved passages may be tangentially related. Consider rephrasing your question or checking alternative sources."
       ],
       "is_hallucinated": false,
-      "duration_sec": 19.984949,
+      "duration_sec": 18.147794,
       "type": "physics"
     },
     {
@@ -505,7 +505,7 @@
       "id": "Q24",
       "question": "How does Bernoulli's principle explain lift in aerodynamics?",
       "category": "In Scope (Edge)",
-      "answer": "Let's dive into how Bernoulli's principle explains lift in aerodynamics. \n\nYou see, Bernoulli's principle states that the pressure of a fluid decreases as its speed increases. This is because the kinetic energy of the fluid increases as it moves faster, and this increased kinetic energy comes from the net work done on the fluid. \n\nNow, when an airplane is in flight, the air flowing over the curved surface of the wing is moving faster than the air flowing along the flat surface underneath. This is because the shape of the wing deflects the air downward, creating a region of lower pressure above the wing and a region of higher pressure below it. \n\nAccording to Bernoulli's principle, the pressure difference between the top and bottom surfaces of the wing creates an upward force, known as lift, that opposes the weight of the plane and keeps it flying. This is a fundamental concept in aerodynamics, and it's a direct application of Bernoulli's principle. \n\nIn fact, the shape of the wing is designed to take advantage of this pressure difference, with the curved upper surface deflecting the air downward and creating a region of lower pressure. This is why airplanes can fly, and it's a direct result of the principles of fluid dynamics, including Bernoulli's principle.",
+      "answer": "Let's dive into how Bernoulli's principle explains lift in aerodynamics. \n\nYou see, Bernoulli's principle states that the pressure of a fluid decreases as its speed increases. This is because the kinetic energy of the fluid increases as it moves faster, and this increased kinetic energy comes from the net work done on the fluid. \n\nNow, when an airplane is in flight, the air flowing over the curved surface of the wing is moving faster than the air flowing along the flat surface underneath. This is because the shape of the wing deflects the air downward, creating a region of lower pressure above the wing and a region of higher pressure below it. \n\nAccording to Bernoulli's principle, the pressure difference between the top and bottom surfaces of the wing creates an upward force, known as lift, that opposes the weight of the plane and keeps it flying. This is a fundamental concept in aerodynamics, and it's a direct application of Bernoulli's principle. \n\nIn fact, the shape of the wing is designed to take advantage of this pressure difference, with the curved upper surface deflecting the air downward and creating a region of lower pressure. This is why airplanes can fly, and it's a testament to the power of Bernoulli's principle in explaining the behavior of fluids in motion.",
       "passed_correctly": true,
       "type": "edge"
     },
