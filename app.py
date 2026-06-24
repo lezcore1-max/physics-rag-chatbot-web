@@ -29,12 +29,93 @@ import re
 def render_response_with_latex(text: str):
     """
     Render an LLM response with properly displayed LaTeX equations.
-    - Display math \\[...\\] → st.latex() (centered, KaTeX-rendered)
-    - Inline  math \\(...\\) → $...$  inside st.markdown()
+    - Display math \\[...\\], $$...$$, or \\begin{env}...\\end{env} → st.latex() (centered, KaTeX-rendered)
+    - Inline  math \\(...\\) → $...$ (with prepended macros) inside st.markdown()
     Falls back to plain st.markdown() if no math is detected.
     """
-    # Pattern: match \[ ... \] (single backslash in the live Python string)
-    display_pattern = re.compile(r'\\\[(.*?)\\\]', re.DOTALL)
+    LATEX_MACROS = r"""
+\gdef\FLPdiv{\boldsymbol{\nabla}\cdot}
+\gdef\FLPgrad{\boldsymbol{\nabla}}
+\gdef\FLPcurl{\boldsymbol{\nabla}\times}
+\gdef\FLPnabla{\boldsymbol{\nabla}}
+\gdef\FLPlap{\nabla^2}
+
+\gdef\ddp#1#2{\frac{\partial #1}{\partial #2}}
+\gdef\ddpl#1#2{\frac{\partial #1}{\partial #2}}
+\gdef\ddt#1#2{\frac{d #1}{d #2}}
+\gdef\ddtl#1#2{\frac{d #1}{d #2}}
+
+% Vector single letters
+\gdef\FLPA{\mathbf{A}}
+\gdef\FLPB{\mathbf{B}}
+\gdef\FLPC{\mathbf{C}}
+\gdef\FLPD{\mathbf{D}}
+\gdef\FLPE{\mathbf{E}}
+\gdef\FLPF{\mathbf{F}}
+\gdef\FLPH{\mathbf{H}}
+\gdef\FLPI{\mathbf{I}}
+\gdef\FLPJ{\mathbf{J}}
+\gdef\FLPL{\mathbf{L}}
+\gdef\FLPM{\mathbf{M}}
+\gdef\FLPP{\mathbf{P}}
+\gdef\FLPR{\mathbf{R}}
+\gdef\FLPS{\mathbf{S}}
+\gdef\FLPU{\mathbf{U}}
+
+\gdef\FLPa{\mathbf{a}}
+\gdef\FLPb{\mathbf{b}}
+\gdef\FLPc{\mathbf{c}}
+\gdef\FLPd{\mathbf{d}}
+\gdef\FLPe{\mathbf{e}}
+\gdef\FLPf{\mathbf{f}}
+\gdef\FLPg{\mathbf{g}}
+\gdef\FLPh{\mathbf{h}}
+\gdef\FLPi{\mathbf{i}}
+\gdef\FLPj{\mathbf{j}}
+\gdef\FLPk{\mathbf{k}}
+\gdef\FLPn{\mathbf{n}}
+\gdef\FLPp{\mathbf{p}}
+\gdef\FLPr{\mathbf{r}}
+\gdef\FLPs{\mathbf{s}}
+\gdef\FLPu{\mathbf{u}}
+\gdef\FLPv{\mathbf{v}}
+\gdef\FLPw{\mathbf{w}}
+\gdef\FLPx{\mathbf{x}}
+
+% Numbers
+\gdef\FLPzero{\mathbf{0}}
+\gdef\FLPzeroi{\mathbf{0}_i}
+\gdef\FLPone{\mathbf{1}}
+\gdef\FLPtwo{\mathbf{2}}
+
+% Greek letters
+\gdef\FLPOmega{\boldsymbol{\Omega}}
+\gdef\FLPomega{\boldsymbol{\omega}}
+\gdef\FLPdelta{\boldsymbol{\delta}}
+\gdef\FLPmu{\boldsymbol{\mu}}
+\gdef\FLPsigma{\boldsymbol{\sigma}}
+\gdef\FLPsigmae{\boldsymbol{\sigma}_e}
+\gdef\FLPsigmaop{\boldsymbol{\sigma}_{\text{op}}}
+\gdef\FLPsigmap{\boldsymbol{\sigma}_p}
+\gdef\FLPtau{\boldsymbol{\tau}}
+\gdef\FLPRe{\mathbf{Re}}
+"""
+
+    def clean_math(m_str: str) -> str:
+        # Strip \label{...} as KaTeX doesn't support it natively and it causes issues
+        m_str = re.sub(r'\\label\{.*?\}', '', m_str)
+        return m_str
+
+    # Pattern for display math:
+    # 1. \[ ... \]
+    # 2. $$ ... $$
+    # 3. \begin{equation/align/etc} ... \end{equation/align/etc}
+    display_pattern = re.compile(
+        r'\\\[(.*?)\\\]|'
+        r'\$\$(.*?)\$\$|'
+        r'\\begin\{(equation|align|gather|multline)\*?\}(.*?)\\end\{\3\*?\}',
+        re.DOTALL
+    )
 
     segments = []
     last_end = 0
@@ -43,28 +124,65 @@ def render_response_with_latex(text: str):
         before = text[last_end:match.start()]
         if before.strip():
             segments.append(('text', before))
-        math = match.group(1).strip()
-        if math:
-            segments.append(('math', math))
+        
+        g1 = match.group(1) # \[ ... \]
+        g2 = match.group(2) # $$ ... $$
+        g4 = match.group(4) # \begin{...} ... \end{...}
+        
+        if g1 is not None:
+            math_content = g1.strip()
+        elif g2 is not None:
+            math_content = g2.strip()
+        else:
+            env_name = match.group(3)
+            cleaned_inner = clean_math(g4)
+            math_content = f"\\begin{{{env_name}}}\n{cleaned_inner}\n\\end{{{env_name}}}"
+            
+        if math_content:
+            if g1 is not None or g2 is not None:
+                math_content = clean_math(math_content)
+            segments.append(('math', LATEX_MACROS + "\n" + math_content))
+            
         last_end = match.end()
 
     remaining = text[last_end:]
     if remaining.strip():
         segments.append(('text', remaining))
 
-    # Nothing to split — plain markdown
+    # Nothing to split — check for inline math in plain markdown
     if not segments:
-        st.markdown(text)
+        if '\\(' in text:
+            # Prepend macros as an invisible math block, and convert \(...\) → $...$
+            processed_text = f"${LATEX_MACROS}$ " + text
+            processed_text = re.sub(
+                r'\\\((.*?)\\\)',
+                lambda m: f"${clean_math(m.group(1))}$",
+                processed_text,
+                flags=re.DOTALL
+            )
+            st.markdown(processed_text)
+        else:
+            st.markdown(text)
         return
 
     for seg_type, content in segments:
         if seg_type == 'math':
             st.latex(content)
         else:
-            # Convert inline \(...\) → $...$
-            content = re.sub(r'\\\((.*?)\\\)', r'$\1$', content, flags=re.DOTALL)
-            if content.strip():
-                st.markdown(content)
+            if '\\(' in content:
+                # Prepend macros once at the start of the markdown segment
+                processed = f"${LATEX_MACROS}$ " + content
+                processed = re.sub(
+                    r'\\\((.*?)\\\)',
+                    lambda m: f"${clean_math(m.group(1))}$",
+                    processed,
+                    flags=re.DOTALL
+                )
+                if processed.strip():
+                    st.markdown(processed)
+            else:
+                if content.strip():
+                    st.markdown(content)
 
 
 # ── Page Configuration ────────────────────────────────────────────────────────
