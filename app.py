@@ -29,42 +29,174 @@ import re
 def render_response_with_latex(text: str):
     """
     Render an LLM response with properly displayed LaTeX equations.
-    - Display math \\[...\\] → st.latex() (centered, KaTeX-rendered)
-    - Inline  math \\(...\\) → $...$  inside st.markdown()
+    - Display math \\[...\\], $$...$$, or \\begin{env}...\\end{env} → st.latex() (centered, KaTeX-rendered)
+    - Inline  math \\(...\\) → $...$ (with prepended macros) inside st.markdown()
     Falls back to plain st.markdown() if no math is detected.
     """
-    # Pattern: match \[ ... \] (single backslash in the live Python string)
-    display_pattern = re.compile(r'\\\[(.*?)\\\]', re.DOTALL)
+    LATEX_MACROS = r"""
+\gdef\FLPdiv{\boldsymbol{\nabla}\cdot}
+\gdef\FLPgrad{\boldsymbol{\nabla}}
+\gdef\FLPcurl{\boldsymbol{\nabla}\times}
+\gdef\FLPnabla{\boldsymbol{\nabla}}
+\gdef\FLPlap{\nabla^2}
+
+\gdef\ddp#1#2{\frac{\partial #1}{\partial #2}}
+\gdef\ddpl#1#2{\frac{\partial #1}{\partial #2}}
+\gdef\ddt#1#2{\frac{d #1}{d #2}}
+\gdef\ddtl#1#2{\frac{d #1}{d #2}}
+
+% Vector single letters
+\gdef\FLPA{\mathbf{A}}
+\gdef\FLPB{\mathbf{B}}
+\gdef\FLPC{\mathbf{C}}
+\gdef\FLPD{\mathbf{D}}
+\gdef\FLPE{\mathbf{E}}
+\gdef\FLPF{\mathbf{F}}
+\gdef\FLPH{\mathbf{H}}
+\gdef\FLPI{\mathbf{I}}
+\gdef\FLPJ{\mathbf{J}}
+\gdef\FLPL{\mathbf{L}}
+\gdef\FLPM{\mathbf{M}}
+\gdef\FLPP{\mathbf{P}}
+\gdef\FLPR{\mathbf{R}}
+\gdef\FLPS{\mathbf{S}}
+\gdef\FLPU{\mathbf{U}}
+
+\gdef\FLPa{\mathbf{a}}
+\gdef\FLPb{\mathbf{b}}
+\gdef\FLPc{\mathbf{c}}
+\gdef\FLPd{\mathbf{d}}
+\gdef\FLPe{\mathbf{e}}
+\gdef\FLPf{\mathbf{f}}
+\gdef\FLPg{\mathbf{g}}
+\gdef\FLPh{\mathbf{h}}
+\gdef\FLPi{\mathbf{i}}
+\gdef\FLPj{\mathbf{j}}
+\gdef\FLPk{\mathbf{k}}
+\gdef\FLPn{\mathbf{n}}
+\gdef\FLPp{\mathbf{p}}
+\gdef\FLPr{\mathbf{r}}
+\gdef\FLPs{\mathbf{s}}
+\gdef\FLPu{\mathbf{u}}
+\gdef\FLPv{\mathbf{v}}
+\gdef\FLPw{\mathbf{w}}
+\gdef\FLPx{\mathbf{x}}
+
+% Numbers
+\gdef\FLPzero{\mathbf{0}}
+\gdef\FLPzeroi{\mathbf{0}_i}
+\gdef\FLPone{\mathbf{1}}
+\gdef\FLPtwo{\mathbf{2}}
+
+% Greek letters
+\gdef\FLPOmega{\boldsymbol{\Omega}}
+\gdef\FLPomega{\boldsymbol{\omega}}
+\gdef\FLPdelta{\boldsymbol{\delta}}
+\gdef\FLPmu{\boldsymbol{\mu}}
+\gdef\FLPsigma{\boldsymbol{\sigma}}
+\gdef\FLPsigmae{\boldsymbol{\sigma}_e}
+\gdef\FLPsigmaop{\boldsymbol{\sigma}_{\text{op}}}
+\gdef\FLPsigmap{\boldsymbol{\sigma}_p}
+\gdef\FLPtau{\boldsymbol{\tau}}
+\gdef\FLPRe{\mathbf{Re}}
+"""
+
+    def clean_math(m_str: str) -> str:
+        # Strip \label{...} as KaTeX doesn't support it natively and it causes issues
+        m_str = re.sub(r'\\label\{.*?\}', '', m_str)
+        return m_str
+
+    # Pattern for display math:
+    # 1. \[ ... \]
+    # 2. $$ ... $$
+    # 3. \begin{equation/align/etc} ... \end{equation/align/etc}
+    DISPLAY_ENVS = r'equation|align|gather|multline'
+    pattern_bracket = re.compile(r'\\\[(.*?)\\\]', re.DOTALL)
+    pattern_dollars = re.compile(r'\$\$(.*?)\$\$', re.DOTALL)
+    pattern_env     = re.compile(
+        r'\\begin\{(' + DISPLAY_ENVS + r')\*?\}(.*?)\\end\{\1\*?\}',
+        re.DOTALL
+    )
+
+    all_matches = []
+    for m in pattern_bracket.finditer(text):
+        all_matches.append(('bracket', m))
+    for m in pattern_dollars.finditer(text):
+        all_matches.append(('dollars', m))
+    for m in pattern_env.finditer(text):
+        all_matches.append(('env', m))
+    all_matches.sort(key=lambda x: x[1].start())
+
+    filtered_matches = []
+    last_match_end = 0
+    for kind, m in all_matches:
+        if m.start() >= last_match_end:
+            filtered_matches.append((kind, m))
+            last_match_end = m.end()
 
     segments = []
     last_end = 0
 
-    for match in display_pattern.finditer(text):
+    for kind, match in filtered_matches:
         before = text[last_end:match.start()]
         if before.strip():
             segments.append(('text', before))
-        math = match.group(1).strip()
-        if math:
-            segments.append(('math', math))
+        
+        if kind == 'bracket':
+            math_content = clean_math(match.group(1).strip())
+        elif kind == 'dollars':
+            math_content = clean_math(match.group(1).strip())
+        else:
+            env_name = match.group(1)
+            cleaned_inner = clean_math(match.group(2).strip())
+            if 'align' in env_name:
+                math_content = f"\\begin{{aligned}}\n{cleaned_inner}\n\\end{{aligned}}"
+            else:
+                math_content = cleaned_inner
+            
+        if math_content:
+            segments.append(('math', LATEX_MACROS + "\n" + math_content))
+            
         last_end = match.end()
 
     remaining = text[last_end:]
     if remaining.strip():
         segments.append(('text', remaining))
 
-    # Nothing to split — plain markdown
+    # Nothing to split — check for inline math in plain markdown
     if not segments:
-        st.markdown(text)
+        if '\\(' in text:
+            # Prepend macros as an invisible math block, and convert \(...\) → $...$
+            processed_text = f"${LATEX_MACROS}$ " + text
+            processed_text = re.sub(
+                r'\\\((.*?)\\\)',
+                lambda m: f"${clean_math(m.group(1))}$",
+                processed_text,
+                flags=re.DOTALL
+            )
+            st.markdown(processed_text)
+        else:
+            st.markdown(text)
         return
 
     for seg_type, content in segments:
         if seg_type == 'math':
             st.latex(content)
         else:
-            # Convert inline \(...\) → $...$
-            content = re.sub(r'\\\((.*?)\\\)', r'$\1$', content, flags=re.DOTALL)
-            if content.strip():
-                st.markdown(content)
+            if '\\(' in content:
+                # Prepend macros once at the start of the markdown segment
+                processed = f"${LATEX_MACROS}$ " + content
+                processed = re.sub(
+                    r'\\\((.*?)\\\)',
+                    lambda m: f"${clean_math(m.group(1))}$",
+                    processed,
+                    flags=re.DOTALL
+                )
+                if processed.strip():
+                    st.markdown(processed)
+            else:
+                if content.strip():
+                    st.markdown(content)
 
 
 # ── Page Configuration ────────────────────────────────────────────────────────
@@ -434,7 +566,7 @@ if user_query:
                     for chunk in response_generator:
                         token = chunk.content if hasattr(chunk, "content") else str(chunk)
                         full_response += token
-                        answer_placeholder.markdown(full_response + "▌")
+                        answer_placeholder.markdown("_Generating answer_ ▌")
                     # Clear streaming placeholder then render with proper LaTeX
                     answer_placeholder.empty()
                     render_response_with_latex(full_response)
