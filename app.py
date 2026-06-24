@@ -135,8 +135,13 @@ def render_response_with_latex(text: str):
             math_content = g2.strip()
         else:
             env_name = match.group(3)
-            cleaned_inner = clean_math(g4)
-            math_content = f"\\begin{{{env_name}}}\n{cleaned_inner}\n\\end{{{env_name}}}"
+            cleaned_inner = clean_math(g4).strip()
+            if env_name in ('align', 'align*'):
+                # Convert to aligned which is supported inside KaTeX math blocks
+                math_content = f"\\begin{{aligned}}\n{cleaned_inner}\n\\end{{aligned}}"
+            else:
+                # For equation, gather, multline, just use the inner content directly as display math
+                math_content = cleaned_inner
             
         if math_content:
             if g1 is not None or g2 is not None:
