@@ -110,42 +110,51 @@ def render_response_with_latex(text: str):
     # 1. \[ ... \]
     # 2. $$ ... $$
     # 3. \begin{equation/align/etc} ... \end{equation/align/etc}
-    display_pattern = re.compile(
-        r'\\\[(.*?)\\\]|'
-        r'\$\$(.*?)\$\$|'
-        r'\\begin\{(equation|align|gather|multline)\*?\}(.*?)\\end\{\3\*?\}',
+    DISPLAY_ENVS = r'equation|align|gather|multline'
+    pattern_bracket = re.compile(r'\\\[(.*?)\\\]', re.DOTALL)
+    pattern_dollars = re.compile(r'\$\$(.*?)\$\$', re.DOTALL)
+    pattern_env     = re.compile(
+        r'\\begin\{(' + DISPLAY_ENVS + r')\*?\}(.*?)\\end\{\1\*?\}',
         re.DOTALL
     )
+
+    all_matches = []
+    for m in pattern_bracket.finditer(text):
+        all_matches.append(('bracket', m))
+    for m in pattern_dollars.finditer(text):
+        all_matches.append(('dollars', m))
+    for m in pattern_env.finditer(text):
+        all_matches.append(('env', m))
+    all_matches.sort(key=lambda x: x[1].start())
+
+    filtered_matches = []
+    last_match_end = 0
+    for kind, m in all_matches:
+        if m.start() >= last_match_end:
+            filtered_matches.append((kind, m))
+            last_match_end = m.end()
 
     segments = []
     last_end = 0
 
-    for match in display_pattern.finditer(text):
+    for kind, match in filtered_matches:
         before = text[last_end:match.start()]
         if before.strip():
             segments.append(('text', before))
         
-        g1 = match.group(1) # \[ ... \]
-        g2 = match.group(2) # $$ ... $$
-        g4 = match.group(4) # \begin{...} ... \end{...}
-        
-        if g1 is not None:
-            math_content = g1.strip()
-        elif g2 is not None:
-            math_content = g2.strip()
+        if kind == 'bracket':
+            math_content = clean_math(match.group(1).strip())
+        elif kind == 'dollars':
+            math_content = clean_math(match.group(1).strip())
         else:
-            env_name = match.group(3)
-            cleaned_inner = clean_math(g4).strip()
-            if env_name in ('align', 'align*'):
-                # Convert to aligned which is supported inside KaTeX math blocks
+            env_name = match.group(1)
+            cleaned_inner = clean_math(match.group(2).strip())
+            if 'align' in env_name:
                 math_content = f"\\begin{{aligned}}\n{cleaned_inner}\n\\end{{aligned}}"
             else:
-                # For equation, gather, multline, just use the inner content directly as display math
                 math_content = cleaned_inner
             
         if math_content:
-            if g1 is not None or g2 is not None:
-                math_content = clean_math(math_content)
             segments.append(('math', LATEX_MACROS + "\n" + math_content))
             
         last_end = match.end()
@@ -557,7 +566,7 @@ if user_query:
                     for chunk in response_generator:
                         token = chunk.content if hasattr(chunk, "content") else str(chunk)
                         full_response += token
-                        answer_placeholder.markdown(full_response + "▌")
+                        answer_placeholder.markdown("_Generating answer_ ▌")
                     # Clear streaming placeholder then render with proper LaTeX
                     answer_placeholder.empty()
                     render_response_with_latex(full_response)
