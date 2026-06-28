@@ -1,6 +1,6 @@
 # 🔭 Local Physics RAG Chatbot
 
-An offline, local Retrieval-Augmented Generation (RAG) system acting as an undergraduate-level physics tutor. Powered by **Ollama (`qwen2.5:7b` + `nomic-embed-text`)**, **LangChain**, **ChromaDB**, and **Streamlit**.
+An offline/hybrid Retrieval-Augmented Generation (RAG) system acting as an undergraduate-level physics tutor. Powered by **ChatGroq (`llama-3.1-8b-instant`)**, **LangChain**, local **ChromaDB** vector store, and **Streamlit**.
 
 The corpus consists of **OpenStax University Physics Volumes 1–3** (PDFs) and **The Feynman Lectures on Physics Volumes I–III** (HTML scraped with preserved LaTeX math).
 
@@ -11,15 +11,15 @@ The corpus consists of **OpenStax University Physics Volumes 1–3** (PDFs) and 
 ```mermaid
 flowchart TD
     A[User Query] --> B[Input Sanitiser\ntruncate 500 chars]
-    B --> C{Domain Guard\nscore < 0.35?}
+    B --> C{Domain Guard\nscore < 0.25?}
     C -- OOS --> D[Polite Refusal\nno LLM called]
-    C -- Physics --> E[MMR Ensemble Retriever\nBM25 0.3 + Semantic 0.7]
+    C -- Physics --> E[MMR Ensemble Retriever\nBM25 0.5 + Semantic 0.5]
     E --> F[CrossEncoder Reranker\n7 → top 5 chunks]
     F --> G{Empty Guard\nchunks == 0?}
     G -- Empty --> H[Corpus Error Message]
     G -- OK --> I[Retrieval Strength Score\nmean cosine similarity]
     I --> J[RAG Prompt Builder\nchunks + query]
-    J --> K[qwen2.5:7b\ntemp=0 · max 512 tokens]
+    J --> K[llama-3.1-8b-instant via Groq\ntemp=0 · max 512 tokens]
     K --> L[Citation Parser]
     L --> M[Streamlit UI\nAnswer + Sources + Strength Badge]
 
@@ -29,7 +29,7 @@ flowchart TD
         P --> R[Sidebar Noise Filter\nRemove Check Your Understanding]
         R --> S[RecursiveCharTextSplitter\n1400/300 · 1200/250]
         Q --> S
-        S --> T[nomic-embed-text\nOllama Embeddings]
+        S --> T[all-mpnet-base-v2\nLocal Embeddings]
         T --> U[(ChromaDB\nPersisted · Backed up)]
         U --> E
     end
@@ -41,25 +41,21 @@ flowchart TD
 
 ### 1. Prerequisites
 - **Python 3.10 or 3.11**
-- **Ollama** installed on your machine.
-- Pull the required local models:
-  ```bash
-  ollama pull qwen2.5:7b
-  ollama pull nomic-embed-text
-  ```
+- **Groq API Key**: Obtain a free API key from the [Groq Console](https://console.groq.com/) and define it in your environment.
+- **NVIDIA GPU (Optional)**: If available, local embedding generation and reranking will automatically run on the GPU via CUDA.
 
 ### 2. Setup Virtual Environment
 Clone this repository and create a virtual environment:
 ```bash
-python -m venv venv
-.\venv\Scripts\Activate.ps1   # On Windows
+python -m venv myvenv
+.\myvenv\Scripts\Activate.ps1   # On Windows
 pip install -r requirements.txt
 ```
 
 ### 3. Set up Environment Variables
-Copy the template `.env.example` to `.env` (if custom configurations like `OLLAMA_HOST` are needed):
-```bash
-cp .env.example .env
+Create a `.env` file in the root directory and add your Groq API key:
+```env
+GROQ_API_KEY=gsk_your_groq_api_key_here
 ```
 
 ---
@@ -85,7 +81,7 @@ Parses, splits, filters sidebar noise, hashes document IDs (for idempotency), ge
 ```bash
 python src/ingest.py
 ```
-*Note: Ingestion checkpoints are saved every 500 chunks. If the pipeline is interrupted, re-running it will automatically resume from the last saved state.*
+*Note: Ingestion automatically runs on your GPU if a CUDA-enabled device is detected, making it extremely fast. Progress checkpoints are saved every 500 chunks.*
 
 ---
 
@@ -104,7 +100,7 @@ Open `http://localhost:8501` in your browser.
 The test suite evaluates the RAG system parameters (Retrieval Precision@5, Recall@5, Citation Accuracy, OOS Refusal Rate) and compares them against a bare LLM baseline.
 
 ### 1. Run Baseline (Bare LLM)
-Queries the 18 physics questions directly on `qwen2.5:7b` without context:
+Queries the 18 physics questions directly on `llama-3.1-8b-instant` without context:
 ```bash
 python tests/baseline_runner.py
 ```
@@ -114,20 +110,17 @@ Evaluates the RAG system and compares metrics side-by-side:
 ```bash
 python tests/hallucination_suite.py --report --baseline
 ```
-Detailed execution reports are saved to `tests/results/report_YYYYMMDD.json`.
+Detailed execution reports (both JSON and compiled PDF reports) are saved to `tests/results/`.
 
 ---
 
 ## 🐳 Containerised Deployment
 
-To deploy both Ollama and the RAG app together using Docker:
+To deploy the app using Docker:
 ```bash
 docker-compose up -d
-# Once started, download models in the Ollama container:
-docker exec -it physics-ollama ollama pull qwen2.5:7b
-docker exec -it physics-ollama ollama pull nomic-embed-text
 ```
-Access the application at `http://localhost:8501`.
+Access the application at `http://localhost:8501`. Ensure your `.env` file contains your `GROQ_API_KEY` before building.
 
 ---
 
@@ -137,9 +130,8 @@ Access the application at `http://localhost:8501`.
 - The **Retrieval Strength** badge shown in the UI (calculated as the mean cosine similarity of top-K reranked chunks) is a **proxy metric of retrieval relevance**.
 - It is **not** a calibrated probability of the answer's factual correctness. The UI clearly states this in tooltips to maintain transparency.
 
-### 2. Concurrency & Performance
-- **Single-User Scope**: Streamlit is single-threaded; streaming responses lock the user input field to prevent browser freezes.
-- **Hardware Limitations**: Re-ranking and embedding models run locally on consumer GPUs. For simultaneous multi-user demonstrations, VRAM overflows can occur if parallel requests are served by Ollama (which defaults to queueing them).
+### 2. GPU Acceleration
+- Local embeddings (`sentence-transformers/all-mpnet-base-v2`) and the reranker model automatically leverage NVIDIA CUDA acceleration if PyTorch detects a GPU.
 
 ### 3. LaTeX Equation Degradation
 - PDFs can contain complex vector formatting that mangles equations when extracted. The ingestion pipeline uses a **three-layer parsing strategy** (PyMuPDF $\rightarrow$ mangle detection $\rightarrow$ pdfplumber fallback).
