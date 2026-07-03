@@ -629,19 +629,25 @@ if user_query:
 </div>
 """, unsafe_allow_html=True)
                         
-            # Store in session state chat history
-            st.session_state.messages.append({
-                "role": "assistant",
-                "content": full_response,
-                "citations": citations,
-                "retrieval_strength": strength_meta,
-                "refused": False
-            })
-            
-            # Save to memory (last 5 turns kept)
-            st.session_state.chat_history.append((user_query, full_response))
+            # 4. Save to chat_history — dict payload so history renderer can
+            #    re-display badge + citations on subsequent renders.
+            #    (st.session_state.messages is NOT used — chat_history is SSoT)
+            st.session_state.chat_history.append((
+                user_query,
+                {
+                    "content":            full_response,
+                    "citations":          citations,
+                    "retrieval_strength": strength_meta,
+                    "refused":            False,
+                }
+            ))
             if len(st.session_state.chat_history) > 5:
                 st.session_state.chat_history.pop(0)
-            
-            # Update stats dynamically by rerunning
-            st.rerun()
+
+            # 5. Refresh sidebar stats in-place — no st.rerun() needed.
+            with stats_placeholder.container():
+                st.markdown(f"""
+    - **Queries Processed**: `{st.session_state.queries_count}`
+    - **OOS Refusals**: `{st.session_state.refused_count}`
+    - **Avg Retrieval Strength**: `{st.session_state.avg_strength:.2%}`
+                """)
