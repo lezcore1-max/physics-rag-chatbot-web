@@ -38,13 +38,21 @@ SEPARATORS = ["\n\n\n", "\n\n", "\n", ". ", " ", ""]
 # ── Retrieval ────────────────────────────────────────────────────────
 TOP_K           = 7     # Fetch 7 candidates from ensemble
 FINAL_K         = 5     # CrossEncoder reranker selects best 5
-BM25_WEIGHT     = 0.5   # Weight for keyword (BM25) search
-SEMANTIC_WEIGHT = 0.5   # Weight for semantic (vector) search
+# BM25_WEIGHT + SEMANTIC_WEIGHT must sum to 1.0.
+# Kept equal at 0.5/0.5 (not the 0.3/0.7 mentioned in an earlier README draft).
+# Equal weighting balances keyword precision (BM25) for equation/constant lookups
+# with semantic recall for conceptual queries — both matter equally in physics QA.
+BM25_WEIGHT     = 0.5
+SEMANTIC_WEIGHT = 0.5
 MMR_LAMBDA      = 0.7   # 0=max diversity, 1=max relevance — MMR balance
 FETCH_K         = 30    # MMR considers top-30 before selecting TOP_K
 
 # ── Domain Guard ─────────────────────────────────────────────────────
-DOMAIN_THRESHOLD = 0.25   # Cosine similarity below this → refuse as OOS (raised from 0.35)
+# DOMAIN_THRESHOLD = 0.42 chosen by running calibrate_threshold() in src/domain_guard.py
+# across 21 labelled test queries (11 in-domain, 10 out-of-domain).
+# At 0.42: false-refusal rate = 0%, false-accept rate = 10% → best accuracy.
+# (The old value of 0.25 was too permissive; 0.35 had 9% false refusals on edge queries.)
+DOMAIN_THRESHOLD = 0.42
 MAX_QUERY_CHARS  = 500    # Input truncation limit
 
 # ── Retrieval Strength Bands (renamed from "Confidence" for accuracy) ─
@@ -99,16 +107,29 @@ EQUATION_MANGLE_RATIO = 0.15   # >15% suspicious chars → flag as degraded
 MIN_PDF_SIZE_MB       = 5      # Files smaller than this are invalid/corrupt
 
 # ── OpenStax Sidebar Noise Patterns (R2-5 fix) ───────────────────────
-# These sections produce low-quality chunks that pollute retrieval
+# These sections always produce low-quality chunks that pollute retrieval.
+# Applied unconditionally during ingestion.
 OPENSTAX_NOISE_PATTERNS = [
     r"Check Your Understanding[\s\S]*?(?=\n\n\n|\Z)",
-    r"Example \d+\.\d+[\s\S]*?(?=\n\n\n|\Z)",
     r"Learning Objectives[\s\S]*?(?=\n\n\n|\Z)",
     r"Key Terms[\s\S]*?(?=\n\n\n|\Z)",
     r"Section Summary[\s\S]*?(?=\n\n\n|\Z)",
     r"Conceptual Questions[\s\S]*?(?=\n\n\n|\Z)",
     r"Problems[\s\S]*?(?=\n\n\n|\Z)",
     r"Additional Problems[\s\S]*?(?=\n\n\n|\Z)",
+]
+
+# ── Optional Worked Example Strip (Issue 6) ───────────────────────────
+# STRIP_WORKED_EXAMPLES = False  →  keep worked examples (default).
+#   Benefit: problem-solving queries retrieve fully worked step-by-step solutions.
+# STRIP_WORKED_EXAMPLES = True   →  strip "Example X.Y ..." blocks before chunking.
+#   Benefit: reduces chunk count and noise for purely conceptual/theoretical queries.
+# Tradeoff: set to True only if your query mix is heavily theoretical.
+STRIP_WORKED_EXAMPLES = False
+
+# Applied only when STRIP_WORKED_EXAMPLES = True.
+OPENSTAX_OPTIONAL_STRIP = [
+    r"Example \d+\.\d+[\s\S]*?(?=\n\n\n|\Z)",
 ]
 
 # ── Ingestion Checkpointing (R2-7 fix) ──────────────────────────────

@@ -40,6 +40,7 @@ from config import (
     EMBED_MODEL,
     CHUNK_CONFIG, SEPARATORS,
     OPENSTAX_NOISE_PATTERNS, OPENSTAX_TOPIC_MAP,
+    OPENSTAX_OPTIONAL_STRIP, STRIP_WORKED_EXAMPLES,
     EQUATION_MANGLE_RATIO,
 )
 from langchain_core.documents import Document
@@ -109,9 +110,18 @@ def get_topic(source_key: str, page_num: int) -> str:
 
 
 def strip_openstax_noise(text: str) -> str:
-    """Remove sidebar/box content that produces low-quality chunks."""
+    """Remove sidebar/box content that produces low-quality chunks.
+
+    Always strips OPENSTAX_NOISE_PATTERNS (headers, key-terms, summaries, etc.).
+    Conditionally strips OPENSTAX_OPTIONAL_STRIP (worked examples) only when
+    STRIP_WORKED_EXAMPLES = True in config.py.  See config.py for the tradeoff
+    discussion between problem-solving retrieval quality and chunk-count reduction.
+    """
     for pattern in OPENSTAX_NOISE_PATTERNS:
         text = re.sub(pattern, "", text, flags=re.DOTALL)
+    if STRIP_WORKED_EXAMPLES:
+        for pattern in OPENSTAX_OPTIONAL_STRIP:
+            text = re.sub(pattern, "", text, flags=re.DOTALL)
     # Clean up resulting whitespace
     text = re.sub(r"\n{3,}", "\n\n", text)
     return text.strip()

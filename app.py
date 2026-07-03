@@ -25,15 +25,16 @@ import streamlit as st
 import pickle
 import re
 
-# ── LaTeX Rendering Helper ────────────────────────────────────────────────────
-def render_response_with_latex(text: str):
-    """
-    Render an LLM response with properly displayed LaTeX equations.
-    - Display math \\[...\\], $$...$$, or \\begin{env}...\\end{env} → st.latex() (centered, KaTeX-rendered)
-    - Inline  math \\(...\\) → $...$ (with prepended macros) inside st.markdown()
-    Falls back to plain st.markdown() if no math is detected.
-    """
-    LATEX_MACROS = r"""
+# ── LaTeX Macro Preamble ─────────────────────────────────────────────────────
+# DESIGN NOTE — KaTeX isolation:
+# Streamlit uses KaTeX for st.latex() and $$...$$ in st.markdown().
+# KaTeX renders each block independently — unlike MathJax there is NO shared
+# macro registry across render calls.  A hidden <div>\(macros\)</div> injected
+# once at startup would work for MathJax but is silently ignored by KaTeX.
+# The only reliable approach is to prepend LATEX_MACROS into EVERY display-math
+# and inline-math string before it is passed to st.latex() / st.markdown().
+# This is verbose but correct for the KaTeX version Streamlit ships.
+LATEX_MACROS = r"""
 \gdef\FLPdiv{\boldsymbol{\nabla}\cdot}
 \gdef\FLPgrad{\boldsymbol{\nabla}}
 \gdef\FLPcurl{\boldsymbol{\nabla}\times}
@@ -101,15 +102,25 @@ def render_response_with_latex(text: str):
 \gdef\FLPRe{\mathbf{Re}}
 """
 
+# ── LaTeX Rendering Helper ─────────────────────────────────────────────────────
+def render_response_with_latex(text: str):
+    """
+    Render an LLM response with properly displayed LaTeX equations.
+    - Display math \\[...\\], $$...$$, or \\begin{env}...\\end{env} → st.latex() (centered, KaTeX-rendered)
+    - Inline  math \\(...\\) → $...$ (with prepended macros) inside st.markdown()
+    Falls back to plain st.markdown() if no math is detected.
+
+    LATEX_MACROS (defined at module level above) are prepended into every math
+    block individually — this is required because Streamlit's KaTeX renderer
+    isolates each render call and does not share \\gdef definitions across blocks.
+    """
+
     def clean_math(m_str: str) -> str:
         # Strip \label{...} as KaTeX doesn't support it natively and it causes issues
         m_str = re.sub(r'\\label\{.*?\}', '', m_str)
         return m_str
 
     # Pattern for display math:
-    # 1. \[ ... \]
-    # 2. $$ ... $$
-    # 3. \begin{equation/align/etc} ... \end{equation/align/etc}
     DISPLAY_ENVS = r'equation|align|gather|multline'
     pattern_bracket = re.compile(r'\\\[(.*?)\\\]', re.DOTALL)
     pattern_dollars = re.compile(r'\$\$(.*?)\$\$', re.DOTALL)
@@ -368,7 +379,10 @@ if "avg_strength" not in st.session_state:
 if "strength_scores" not in st.session_state:
     st.session_state.strength_scores = []
 if "chat_history" not in st.session_state:
-    st.session_state.chat_history = []  # list of (human, ai) tuples for memory
+    # chat_history is the SINGLE source of truth for both UI display and LLM context.
+    # It is a list of (user_query: str, assistant_response) tuples.
+    # st.session_state.messages is NOT used; messages are derived on the fly below.
+    st.session_state.chat_history = []
 
 
 # ── Sidebar ───────────────────────────────────────────────────────────────────
@@ -410,13 +424,16 @@ with st.sidebar:
     - **Top-K Chunks**: `{TOP_K} → {FINAL_K} (Reranked)`
     """)
 
-    # 4. Session Statistics
+    # 4. Session Statistics (wrapped in a placeholder so it updates in-place
+    #    after query completion without requiring a full page rerun)
     st.subheader("Session Stats")
-    st.markdown(f"""
+    stats_placeholder = st.sidebar.empty()
+    with stats_placeholder.container():
+        st.markdown(f"""
     - **Queries Processed**: `{st.session_state.queries_count}`
     - **OOS Refusals**: `{st.session_state.refused_count}`
     - **Avg Retrieval Strength**: `{st.session_state.avg_strength:.2%}`
-    """)
+        """)
     
     st.divider()
     
@@ -424,7 +441,16 @@ with st.sidebar:
     col_clear, col_index = st.columns(2)
     with col_clear:
         if st.button("🗑️ Clear Chat", use_container_width=True):
-            st.session_state.messages = []
+            st.session_state.chat_history = []
+            # Reset all sidebar stats so they reflect the new fresh session.
+            st.session_state.queries_count = 0
+            st.session_state.refused_count = 0
+            st.session_state.avg_strength = 0.0
+            st.session_state.strength_scores = []
+            # NOTE: No LLM memory object to clear.
+            # query_pipeline() in src/llm_chain.py accepts chat_history as a plain
+            # list argument each call — there is no ConversationBufferMemory.
+            # Clearing chat_history is the single, complete reset for LLM context.
             st.rerun()
             
     with col_index:
@@ -433,41 +459,36 @@ with st.sidebar:
             st.code("python src/ingest.py --reset", language="bash")
 
 
-# ── Main Chat Area ────────────────────────────────────────────────────────────
+# ── Main Chat Area ───────────────────────────────────────────────────────────
 st.title("Physics Tutor Chatbot")
 st.caption("Ask questions on classical mechanics, electromagnetism, optics, thermodynamics, waves, and quantum/nuclear physics.")
 
-# Load chat history
-if "messages" not in st.session_state:
-    st.session_state.messages = []
-
-# Display conversation history
-for msg in st.session_state.messages:
-    with st.chat_message(msg["role"]):
-        if msg["role"] == "assistant":
-            render_response_with_latex(msg["content"])
-        else:
-            st.markdown(msg["content"])
-        
-        # Display metadata card for assistant responses
-        if msg["role"] == "assistant" and not msg.get("refused", False):
-            # Badge for retrieval strength
-            score, label, desc = msg["retrieval_strength"]
-            badge_color = get_badge_color(label)
-            emoji = get_badge_emoji(label)
-            
-            st.markdown(f"""
-            <div class="badge-container">
-                <span class="custom-badge" style="background-color: {badge_color};">
-                    {emoji} Retrieval Strength: {label} ({score:.2f})
-                </span>
-            </div>
-            """, unsafe_allow_html=True)
-            
-            # Citations expander
-            import html as html_lib
-            citations = msg.get("citations", [])
-            if citations:
+# Derive the display message list from chat_history (single source of truth).
+# Each tuple in chat_history is (user_query, assistant_response).
+# assistant_response is either a plain str (refusals/greetings) or a dict
+# carrying {"content", "citations", "retrieval_strength", "refused"} for full answers.
+import html as html_lib
+for human, assistant in st.session_state.chat_history:
+    with st.chat_message("user"):
+        st.markdown(human)
+    with st.chat_message("assistant"):
+        if isinstance(assistant, dict):
+            refused = assistant.get("refused", False)
+            if not refused:
+                # Re-render badge
+                score, label, desc = assistant["retrieval_strength"]
+                badge_color = get_badge_color(label)
+                emoji = get_badge_emoji(label)
+                st.markdown(f"""
+                <div class="badge-container">
+                    <span class="custom-badge" style="background-color: {badge_color};" title="{desc}">
+                        {emoji} Retrieval Strength: {label} ({score:.2f})
+                    </span>
+                </div>
+                """, unsafe_allow_html=True)
+            render_response_with_latex(assistant["content"])
+            citations = assistant.get("citations", [])
+            if citations and not refused:
                 with st.expander("📚 View Source Snippets"):
                     for cite in citations:
                         warn_html = (
@@ -478,7 +499,6 @@ for msg in st.session_state.messages:
                         topic   = html_lib.escape(str(cite.get('topic', '')))
                         fmt     = html_lib.escape(str(cite.get('type', '')).capitalize())
                         content = html_lib.escape(str(cite.get('content', '')))
-
                         st.markdown(f"""
 <div class="source-card">
   <div class="source-header">
@@ -492,22 +512,22 @@ for msg in st.session_state.messages:
   <div class="source-text">{content}</div>
 </div>
 """, unsafe_allow_html=True)
+        else:
+            st.markdown(str(assistant))
 
 
-# ── Query Submission ──────────────────────────────────────────────────────────
+# ── Query Submission ───────────────────────────────────────────────────────────
 # Disable chat input if models are offline
 input_placeholder = "Ask a physics question..." if is_retriever_online else "Database is offline. Run ingestion first."
 user_query = st.chat_input(placeholder=input_placeholder, disabled=not is_retriever_online)
 
 if user_query:
-    # Append & display user message
-    st.session_state.messages.append({"role": "user", "content": user_query})
+    # Display user message immediately
     with st.chat_message("user"):
         st.markdown(user_query)
-        
+
     st.session_state.queries_count += 1
-    
-    # Run the pipeline
+
     # Run the pipeline
     with st.spinner("Searching corpus & generating answer..."):
         is_refused, response_dict, prompt, citations, strength_meta = query_pipeline(
@@ -519,7 +539,7 @@ if user_query:
         # Inject chat history into prompt for memory
         if not is_refused and prompt and st.session_state.chat_history:
             history_text = "\n".join([
-                f"Student: {h}\nTutor: {a}"
+                f"Student: {h}\nTutor: {a['content'] if isinstance(a, dict) else a}"
                 for h, a in st.session_state.chat_history[-5:]  # last 5 turns
             ])
             prompt = f"Previous conversation:\n{history_text}\n\n{prompt}"
@@ -529,12 +549,15 @@ if user_query:
         st.session_state.refused_count += 1
         with st.chat_message("assistant"):
             st.markdown(response_dict["answer"])
-            
-        st.session_state.messages.append({
-            "role": "assistant",
-            "content": response_dict["answer"],
-            "refused": True
-        })
+        # Record in chat_history (plain string for refusals)
+        st.session_state.chat_history.append((user_query, response_dict["answer"]))
+        # Refresh sidebar stats in-place
+        with stats_placeholder.container():
+            st.markdown(f"""
+    - **Queries Processed**: `{st.session_state.queries_count}`
+    - **OOS Refusals**: `{st.session_state.refused_count}`
+    - **Avg Retrieval Strength**: `{st.session_state.avg_strength:.2%}`
+        """)
     else:
         # Valid physics query: execute streaming LLM response
         with st.chat_message("assistant"):
@@ -566,7 +589,7 @@ if user_query:
                     for chunk in response_generator:
                         token = chunk.content if hasattr(chunk, "content") else str(chunk)
                         full_response += token
-                        answer_placeholder.markdown("_Generating answer_ ▌")
+                        answer_placeholder.markdown(full_response + " ▌")
                     # Clear streaming placeholder then render with proper LaTeX
                     answer_placeholder.empty()
                     render_response_with_latex(full_response)
