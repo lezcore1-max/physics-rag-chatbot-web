@@ -151,6 +151,46 @@ def format_citations_metadata(docs: List[Document]) -> List[Dict[str, Any]]:
     return citations
 
 
+def is_contextual_followup(query: str, chat_history: list) -> bool:
+    """
+    Return True when the query is a short, context-dependent follow-up that
+    should be allowed through without re-running the domain guard.
+
+    Conditions (ALL must hold):
+    - The query is short (≤ 10 words) — long queries have enough content to
+      self-identify as in/out of domain.
+    - There is at least one prior turn in chat_history.
+    - The previous assistant turn was a VALID physics answer, not a refusal.
+      We detect refusals by checking for the standard refusal phrase.
+
+    chat_history entries are (user_query, assistant_response) tuples where
+    assistant_response is either:
+      - a plain str  (for refused / greeting turns)
+      - a dict       {'content': str, 'refused': bool, ...} (for full answers)
+    """
+    if not chat_history:
+        return False
+
+    words = query.strip().split()
+    if len(words) > 10:
+        return False
+
+    last_response = chat_history[-1][1]
+    # Detect refusal regardless of payload shape
+    if isinstance(last_response, dict):
+        if last_response.get("refused", False):
+            return False
+        response_text = last_response.get("content", "")
+    else:
+        response_text = str(last_response)
+
+    REFUSAL_MARKER = "doesn't seem to fall within"
+    if REFUSAL_MARKER in response_text:
+        return False
+
+    return True
+
+
 def query_pipeline(
     query: str, 
     retriever, 
@@ -210,7 +250,12 @@ def query_pipeline(
         }, None, None, None
 
     # 3. OOS Guard
-    if domain_guard is not None:
+    # Skip when the query is a short contextual follow-up to a valid physics
+    # answer — e.g. "give me some examples", "what about the formula?".
+    # These carry no physics keywords and score low against the corpus even
+    # though they are clearly in-scope given the conversation context.
+    followup_bypass = is_contextual_followup(query, chat_history or [])
+    if domain_guard is not None and not followup_bypass:
         is_oos, oos_score = domain_guard.check(sanitised)
         if is_oos:
             return True, {
