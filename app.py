@@ -177,12 +177,15 @@ def render_response_with_latex(text: str):
     # Nothing to split — check for inline math in plain markdown
     if not segments:
         if '\\(' in text:
-            # Prepend macros as an invisible math block, and convert \(...\) → $...$
-            processed_text = f"${LATEX_MACROS}$ " + text
+            # Embed macros INSIDE each $...$ expression so KaTeX sees them in
+            # the same render call. A separate $LATEX_MACROS$ preamble token
+            # does NOT work — KaTeX ignores \gdef across isolated render calls,
+            # and a multiline string with % comments never gets parsed as math;
+            # it leaks as visible text instead.
             processed_text = re.sub(
                 r'\\\((.*?)\\\)',
-                lambda m: f"${clean_math(m.group(1))}$",
-                processed_text,
+                lambda m: f"${LATEX_MACROS}\n{clean_math(m.group(1))}$",
+                text,
                 flags=re.DOTALL
             )
             st.markdown(processed_text)
@@ -195,12 +198,12 @@ def render_response_with_latex(text: str):
             st.latex(content)
         else:
             if '\\(' in content:
-                # Prepend macros once at the start of the markdown segment
-                processed = f"${LATEX_MACROS}$ " + content
+                # Same fix: macros go inside each $...$ so they are in scope
+                # for that specific KaTeX render call.
                 processed = re.sub(
                     r'\\\((.*?)\\\)',
-                    lambda m: f"${clean_math(m.group(1))}$",
-                    processed,
+                    lambda m: f"${LATEX_MACROS}\n{clean_math(m.group(1))}$",
+                    content,
                     flags=re.DOTALL
                 )
                 if processed.strip():
