@@ -102,6 +102,18 @@ LATEX_MACROS = r"""
 \gdef\FLPRe{\mathbf{Re}}
 """
 
+# Compact single-line version of the macros for use inside st.markdown() inline
+# math blocks ($...$).  st.markdown() only treats $...$ as inline KaTeX math
+# when the content sits on ONE line.  The full LATEX_MACROS has % comment lines
+# and blank lines which cause the markdown parser to bail out and emit raw text.
+# Stripping comments/blanks and joining to a single line fixes that.
+# LATEX_MACROS (multiline) is still used for st.latex() where it works fine.
+LATEX_MACROS_INLINE = " ".join(
+    line.strip()
+    for line in LATEX_MACROS.splitlines()
+    if line.strip() and not line.strip().startswith("%")
+)
+
 # ── LaTeX Rendering Helper ─────────────────────────────────────────────────────
 def render_response_with_latex(text: str):
     """
@@ -184,7 +196,7 @@ def render_response_with_latex(text: str):
             # it leaks as visible text instead.
             processed_text = re.sub(
                 r'\\\((.*?)\\\)',
-                lambda m: f"${LATEX_MACROS}\n{clean_math(m.group(1))}$",
+                lambda m: f"${LATEX_MACROS_INLINE} {clean_math(m.group(1))}$",
                 text,
                 flags=re.DOTALL
             )
@@ -202,7 +214,7 @@ def render_response_with_latex(text: str):
                 # for that specific KaTeX render call.
                 processed = re.sub(
                     r'\\\((.*?)\\\)',
-                    lambda m: f"${LATEX_MACROS}\n{clean_math(m.group(1))}$",
+                    lambda m: f"${LATEX_MACROS_INLINE} {clean_math(m.group(1))}$",
                     content,
                     flags=re.DOTALL
                 )
